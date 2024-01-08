@@ -26,6 +26,7 @@ router.post("/login", async (req, res) => {
     })
     if (!signedUser) {
         res.json({ msg: "User does not exist, please signup first" })
+        return
     }
     const token = jwt.sign({
         username: userInput.username

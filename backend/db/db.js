@@ -4,14 +4,30 @@ mongoose.connect("mongodb+srv://ansharora3839:g68W8vbEth9POW2M@cluster0.qrpua6t.
 
 const userSchema = mongoose.Schema({
     username: String,
-    password: String
+    password: String,
+    todos: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'todo'
+    }]
+})
+
+const todoSchema = mongoose.Schema({
+    title: String,
+    description: String,
+    completed: {
+        type: Boolean,
+        default: false
+    }
 })
 
 
 const User = mongoose.model('user', userSchema)
+const Todo = mongoose.model('todo', todoSchema)
+
 
 
 
 module.exports = {
-    User
+    User,
+    Todo
 }
