@@ -14,6 +14,7 @@ const userSchema = mongoose.Schema({
 const todoSchema = mongoose.Schema({
     title: String,
     description: String,
+    tag: String,
     completed: {
         type: Boolean,
         default: false

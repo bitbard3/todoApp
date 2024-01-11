@@ -14,7 +14,9 @@ router.post('/newtodo', loginMiddleware, userExistMiddleware, async (req, res) =
     }
     const todo = await Todo.create({
         title: userInput.title,
-        description: userInput.description
+        description: userInput.description,
+        tag: userInput.tag
+
     })
     await User.updateOne(
         { username: req.username },
@@ -24,7 +26,7 @@ router.post('/newtodo', loginMiddleware, userExistMiddleware, async (req, res) =
             }
         }
     )
-    res.json({ msg: "todo created", user: `${req.username}` })
+    res.json({ msg: "todo created" })
 })
 router.get('/mytodos', loginMiddleware, userExistMiddleware, async (req, res) => {
     const user = req.user
@@ -55,6 +57,9 @@ router.put("/updatetodo/:todoid", loginMiddleware, userExistMiddleware, async (r
         }
     }
     // TODO: Throw error if empty obj provided
+    if (userInput.tag !== undefined) {
+        updateObject.$set.tag = userInput.tag
+    }
     if (userInput.title !== undefined) {
         updateObject.$set.title = userInput.title;
     }
