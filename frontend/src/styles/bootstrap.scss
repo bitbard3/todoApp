@@ -1,3 +1,86 @@
+// Fonts
+
+@font-face {
+  font-family: "adobe_clean";
+  src: url("../assets/fonts/adobecleanboldit-webfont.woff2") format("woff2"),
+    url("../assets/fonts/adobecleanboldit-webfont.woff") format("woff");
+  font-weight: bold;
+  font-style: italic;
+}
+@font-face {
+  font-family: "adobe_clean";
+  src: url("../assets/fonts/adobecleanbold-webfont.woff2") format("woff2"),
+    url("../assets/fonts/adobecleanbold-webfont.woff") format("woff");
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "adobe_clean";
+  src: url("../assets/fonts/adobecleanlight-webfont.woff2") format("woff2"),
+    url("../assets/fonts/adobecleanlight-webfont.woff") format("woff");
+  font-weight: light;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "adobe_clean";
+  src: url("../assets/fonts/adobecleanlightit-webfont.woff2") format("woff2"),
+    url("../assets/fonts/adobecleanlightit-webfont.woff") format("woff");
+  font-weight: light;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "adobe_clean";
+  src: url("../assets/fonts/adobecleanregular-webfont.woff2") format("woff2"),
+    url("../assets/fonts/adobecleanregular-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "adobe_clean";
+  src: url("../assets/fonts/adobecleansemilight-webfont.woff2") format("woff2"),
+    url("../assets/fonts/adobecleansemilight-webfont.woff") format("woff");
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "adobe_clean";
+  src: url("../assets/fonts/adobecleanblack-webfont.woff2") format("woff2"),
+    url("../assets/fonts/adobecleanblack-webfont.woff") format("woff");
+  font-weight: 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "adobe_clean";
+  src: url("../assets/fonts/adobecleanblackit-webfont.woff2") format("woff2"),
+    url("../assets/fonts/adobecleanblackit-webfont.woff") format("woff");
+  font-weight: 900;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "adobe_clean";
+  src: url("../assets/fonts/adobecleanextrabold-webfont.woff2") format("woff2"),
+    url("../assets/fonts/adobecleanextrabold-webfont.woff") format("woff");
+  font-weight: 800;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "adobe_clean";
+  src: url("../assets/fonts/adobecleanextraboldit-webfont.woff2")
+      format("woff2"),
+    url("../assets/fonts/adobecleanextraboldit-webfont.woff") format("woff");
+  font-weight: 800;
+  font-style: italic;
+}
+$font-family-base: "adobe_clean", serif;
+
 // Colors
 $white: #fff;
 $primary: #69665c;
