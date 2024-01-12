@@ -1,5 +1,7 @@
 import { useState } from "react";
-
-function App() {}
+import "./styles/bootstrap.scss";
+function App() {
+  return <div></div>;
+}
 
 export default App;
