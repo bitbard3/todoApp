@@ -7,3 +7,17 @@
   --red: #ffcece;
   --purple: #d2ceff;
 }
+@media screen and (max-width: 600px) {
+  .hero {
+    background-color: var(--secondary);
+  }
+  .brand-text {
+    font-size: 3rem !important;
+  }
+  .account-custom {
+    font-size: 1.3rem !important;
+  }
+}
+.account-custom {
+  color: #3b3a3a;
+}
