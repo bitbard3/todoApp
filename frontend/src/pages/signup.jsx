@@ -33,14 +33,14 @@ export const Signup = () => {
                 <input
                   type="text"
                   placeholder="Username"
-                  className="form-control rounded-2"
+                  className="form-control rounded-2 info"
                 />
               </div>
               <div className="pt-4 input-group w-75">
                 <input
                   type="password"
                   placeholder="password"
-                  className="form-control rounded-2"
+                  className="form-control rounded-2 info"
                 />
               </div>
               <div className="d-grid w-75 mt-5">
