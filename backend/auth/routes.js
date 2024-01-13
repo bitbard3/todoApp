@@ -1,15 +1,21 @@
 const { Router } = require('express')
 const router = Router()
-const { signupSchema } = require('../auth/validations/userValidate')
+const { formSchema } = require('../auth/validations/userValidate')
 const { User } = require("../db/db")
 const { JWT_SECRET } = require('../config')
 const jwt = require('jsonwebtoken')
 router.post('/signup', async (req, res) => {
     const userInput = req.body
-    const isValid = signupSchema.safeParse(userInput)
+    const isValid = formSchema.safeParse(userInput)
     if (!isValid.success == true) {
         res.status(411).json({ msg: "Invalid input" })
         return
+    }
+    const userExist = await User.findOne({
+        username: userInput.username
+    })
+    if (userExist) {
+        res.status(409).json({ msg: "User exist,choose different username" })
     }
     await User.create({
         username: userInput.username,
@@ -20,12 +26,17 @@ router.post('/signup', async (req, res) => {
 })
 router.post("/login", async (req, res) => {
     const userInput = req.body
+    const isValid = formSchema.safeParse(userInput)
+    if (!isValid.success == true) {
+        res.status(411).json({ msg: "Invalid input" })
+        return
+    }
     const signedUser = await User.findOne({
         username: userInput.username,
         password: userInput.password
     })
     if (!signedUser) {
-        res.json({ msg: "User does not exist, please signup first" })
+        res.status(404).json({ msg: "User does not exist, please signup first" })
         return
     }
     const token = jwt.sign({
