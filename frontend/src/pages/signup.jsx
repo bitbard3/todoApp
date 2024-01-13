@@ -1,25 +1,16 @@
 import React from "react";
 import signupImage from "../assets/images/signup.png";
-
+import { AuthText } from "../components/AuthText";
 export const Signup = () => {
   return (
     <div>
       <div className="row overflow-hidden">
-        <div className="col-md-6 bg-secondary vh-100 d-none d-md-block">
-          <div className="d-flex align-items-center justify-content-evenly h-100 flex-column pt-7">
-            <h2 className="px-5 fs-1 fw-bold text-primary">
-              Supercharge Your Day with todo! Your tasks, your way – Effortless,
-              Efficient, Exceptional. Let's Get Things Done!
-            </h2>
-            <div className="img-container">
-              <img
-                style={{ height: "15rem", width: "15rem" }}
-                src={signupImage}
-                alt="Signup"
-              />
-            </div>
-          </div>
-        </div>
+        <AuthText
+          text={
+            "Supercharge Your Day with todo! Your tasks, your way – Effortless,Efficient, Exceptional. Let's Get Things Done!"
+          }
+          img={signupImage}
+        ></AuthText>
         <div className="col-md-6 vh-100 hero">
           <div className="container">
             <div className="d-flex justify-content-center justify-content-md-end pt-7 p-md-4">
