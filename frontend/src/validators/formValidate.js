@@ -5,7 +5,7 @@ const usernameSchema = z.string({
     message: "Username should be between 3 and 20 letters"
 });
 
-const passwordSchema = z.string({ required_error: "Password is required" });
+const passwordSchema = z.string().min(2, { message: "Password is too short" });
 
 export const userSchema = z.object({
     username: usernameSchema,
