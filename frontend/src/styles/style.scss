@@ -28,3 +28,28 @@
 .error {
   font-size: 0.9rem;
 }
+@keyframes strike {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 100%;
+  }
+}
+.strike {
+  position: relative;
+}
+.strike::after {
+  content: " ";
+  position: absolute;
+  top: 55%;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: var(--primary);
+  animation-name: strike;
+  animation-duration: 1.3s;
+  animation-timing-function: linear;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
