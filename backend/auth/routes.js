@@ -1,16 +1,10 @@
 const { Router } = require('express')
 const router = Router()
-const { formSchema } = require('../auth/validations/userValidate')
 const { User } = require("../db/db")
 const { JWT_SECRET } = require('../config')
 const jwt = require('jsonwebtoken')
 router.post('/signup', async (req, res) => {
     const userInput = req.body
-    const isValid = formSchema.safeParse(userInput)
-    if (!isValid.success == true) {
-        res.status(411).json({ msg: "Invalid input" })
-        return
-    }
     const userExist = await User.findOne({
         username: userInput.username
     })
@@ -27,11 +21,6 @@ router.post('/signup', async (req, res) => {
 })
 router.post("/login", async (req, res) => {
     const userInput = req.body
-    const isValid = formSchema.safeParse(userInput)
-    if (!isValid.success == true) {
-        res.status(411).json({ msg: "Invalid input" })
-        return
-    }
     const signedUser = await User.findOne({
         username: userInput.username,
         password: userInput.password
