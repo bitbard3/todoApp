@@ -20,23 +20,25 @@ export const Signup = () => {
               Create an account to continue
             </p>
             <div className="container d-flex flex-column align-items-center">
-              <div className="input-group w-75">
-                <input
-                  type="text"
-                  placeholder="Username"
-                  className="form-control rounded-2 info"
-                />
-              </div>
-              <div className="pt-4 input-group w-75">
-                <input
-                  type="password"
-                  placeholder="password"
-                  className="form-control rounded-2 info"
-                />
-              </div>
-              <div className="d-grid w-75 mt-5">
-                <button className="btn btn-primary rounded-3">Sign Up</button>
-              </div>
+              <form className="w-75">
+                <div className="input-group w-100">
+                  <input
+                    type="text"
+                    placeholder="Username"
+                    className="form-control rounded-2 info"
+                  />
+                </div>
+                <div className="pt-4 input-group w-100">
+                  <input
+                    type="password"
+                    placeholder="password"
+                    className="form-control rounded-2 info"
+                  />
+                </div>
+                <div className="d-grid w-100 mt-5">
+                  <button className="btn btn-primary rounded-3">Sign Up</button>
+                </div>
+              </form>
               <div className="image-container pt-5 d-md-none">
                 <img
                   style={{ height: "10rem", width: "10rem" }}
