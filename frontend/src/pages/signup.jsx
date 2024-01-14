@@ -1,4 +1,3 @@
-// Signup.jsx
 import React from "react";
 import signupImage from "../assets/images/signup.png";
 import { AuthForm } from "../components/AuthForm";
