@@ -16,6 +16,7 @@ router.post('/signup', async (req, res) => {
     })
     if (userExist) {
         res.status(409).json({ msg: "User exist,choose different username" })
+        return
     }
     await User.create({
         username: userInput.username,
