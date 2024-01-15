@@ -17,6 +17,16 @@
   .account-custom {
     font-size: 1.3rem !important;
   }
+  .avatar {
+    width: 5rem !important;
+    height: 5rem !important;
+  }
+  .hero-text {
+    font-size: 1rem !important;
+  }
+  .hero-text-container {
+    padding: 0 3rem;
+  }
 }
 .account-custom {
   color: #3b3a3a;
@@ -64,4 +74,20 @@
   animation-timing-function: linear;
   animation-iteration-count: 1;
   animation-fill-mode: forwards;
+}
+.purple {
+  color: #c0bbfd;
+}
+.blue {
+  color: #c0dbf3;
+}
+.green {
+  color: #c8f0c1;
+}
+.red {
+  color: #fabebe;
+}
+.avatar {
+  height: 10rem;
+  width: 10rem;
 }
