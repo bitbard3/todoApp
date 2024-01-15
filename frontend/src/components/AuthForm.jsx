@@ -39,15 +39,31 @@ export const AuthForm = ({
     if (!validInput.error) {
       const userInfo = { username, password };
 
-      try {
-        const response = await axios.post(apiUrl, userInfo);
-        // Handle success, e.g., show success message
-        console.log(successMessage);
-      } catch (error) {
-        if (error.response.status === 409) {
-          setUsernameError("User already exists");
-        } else {
-          setFormError("Failed creating the user, retry");
+      if (formType == "login") {
+        try {
+          const response = await axios.post(apiUrl, userInfo);
+          if (response.status == 200) {
+            var jwt = response.data.token;
+            localStorage.setItem("jwtToken", jwt);
+          }
+        } catch (error) {
+          if (error.response.status == 404) {
+            setUsernameError("User not found");
+          } else {
+            setFormError("Failed to login, retry");
+          }
+        }
+      }
+      if (formType == "signup") {
+        try {
+          const response = await axios.post(apiUrl, userInfo);
+          console.log(successMessage);
+        } catch (error) {
+          if (error.response.status === 409) {
+            setUsernameError("User already exists");
+          } else {
+            setFormError("Failed creating an account, retry");
+          }
         }
       }
     }
