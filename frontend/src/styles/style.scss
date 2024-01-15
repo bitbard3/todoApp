@@ -7,47 +7,34 @@
   --red: #ffcece;
   --purple: #d2ceff;
 }
-@media screen and (max-width: 600px) {
-  .hero {
-    background-color: var(--secondary);
-  }
-  .brand-text {
-    font-size: 3rem !important;
-  }
-  .account-custom {
-    font-size: 1.3rem !important;
-  }
-  .avatar {
-    width: 5rem !important;
-    height: 5rem !important;
-  }
-  .hero-text {
-    font-size: 1rem !important;
-  }
-  .hero-text-container {
-    padding: 0 3rem;
-  }
+.purple {
+  color: #c0bbfd;
 }
-.account-custom {
-  color: #3b3a3a;
+.blue {
+  color: #c0dbf3;
 }
-.info {
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 12px;
-  border: 0.5px solid var(--primary);
+.green {
+  color: #c8f0c1;
 }
-.error {
-  font-size: 0.9rem;
+.red {
+  color: #fabebe;
 }
-.scrolldown {
-  animation: moveUpAnimation 1s cubic-bezier(0, 0, 0.93, 0.38) forwards;
-  animation-delay: 2s;
-}
-@keyframes moveUpAnimation {
+
+@keyframes moveDownAnimation {
   from {
     transform: translateY(0);
   }
   to {
     transform: translateY(-100%);
+    display: none;
+  }
+}
+@keyframes moveUpAnimation {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
   }
 }
 @keyframes strike {
@@ -70,24 +57,52 @@
   height: 4px;
   background: var(--primary);
   animation-name: strike;
-  animation-duration: 1.3s;
+  animation-duration: 1s;
   animation-timing-function: linear;
   animation-iteration-count: 1;
   animation-fill-mode: forwards;
 }
-.purple {
-  color: #c0bbfd;
+.scrolldown {
+  animation: moveDownAnimation 1s cubic-bezier(0, 0, 0.93, 0.38) forwards;
+  animation-delay: 1.7s;
 }
-.blue {
-  color: #c0dbf3;
+.scrollup {
+  animation: moveUpAnimation 1.3s cubic-bezier(0, 0, 1, -0.02) forwards;
+  animation-delay: 1.6s;
 }
-.green {
-  color: #c8f0c1;
+.account-custom {
+  color: #3b3a3a;
 }
-.red {
-  color: #fabebe;
+.info {
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 12px;
+  border: 0.5px solid var(--primary);
 }
+.error {
+  font-size: 0.9rem;
+}
+
 .avatar {
   height: 10rem;
   width: 10rem;
+}
+@media screen and (max-width: 600px) {
+  .hero {
+    background-color: var(--secondary);
+  }
+  .brand-text {
+    font-size: 3rem !important;
+  }
+  .account-custom {
+    font-size: 1.3rem !important;
+  }
+  .avatar {
+    width: 5rem !important;
+    height: 5rem !important;
+  }
+  .hero-text {
+    font-size: 1rem !important;
+  }
+  .hero-text-container {
+    padding: 0 3rem;
+  }
 }

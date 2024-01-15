@@ -5,12 +5,12 @@ import cuteimg3 from "../assets/images/CuteAvatar3.png";
 export const Home = () => {
   return (
     <div>
-      {/* <div className="bg-secondary vh-100 scrolldown ">
+      <div className="bg-secondary vh-100 scrolldown">
         <div className="d-flex justify-content-center align-items-center h-100">
           <p className="strike display-2 fw-bold text-primary">todo</p>
         </div>
-      </div> */}
-      <div className="d-flex flex-column align-items-center justify-content-center vh-100 ">
+      </div>
+      <div className="d-flex flex-column align-items-center justify-content-center vh-100 scrollup">
         <div className="">
           <span className="fw-bold display-2">
             <letter className="purple">t</letter>
