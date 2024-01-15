@@ -85,6 +85,25 @@
   height: 10rem;
   width: 10rem;
 }
+.icon {
+  font-size: 1.5rem !important;
+}
+.tag {
+  height: 35px;
+  width: 35px;
+}
+.tag-purple {
+  background-color: var(--purple);
+}
+.tag-red {
+  background-color: var(--red);
+}
+.tag-green {
+  background-color: var(--green);
+}
+.tag-blue {
+  background-color: var(--blue);
+}
 @media screen and (max-width: 600px) {
   .hero {
     background-color: var(--secondary);
@@ -104,5 +123,12 @@
   }
   .hero-text-container {
     padding: 0 3rem;
+  }
+  .tagname {
+    font-size: 1rem !important;
+  }
+  .tag {
+    height: 25px !important;
+    width: 25px !important;
   }
 }
