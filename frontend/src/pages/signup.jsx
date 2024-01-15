@@ -6,7 +6,6 @@ export const Signup = () => {
     <AuthForm
       formType="signup"
       buttonText="Sign Up"
-      apiUrl="http://localhost:3000/signup"
       successMessage="User created successfully"
       image={signupImage}
       text={

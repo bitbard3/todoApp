@@ -3,10 +3,11 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { userSchema } from "../validators/formValidate";
 import { AuthText } from "../components/AuthText";
+const signupApiUrl = "http://localhost:3000/signup";
+const loginApiUrl = "http://localhost:3000/login";
 export const AuthForm = ({
   formType,
   buttonText,
-  apiUrl,
   successMessage,
   image,
   text,
@@ -41,7 +42,7 @@ export const AuthForm = ({
 
       if (formType == "login") {
         try {
-          const response = await axios.post(apiUrl, userInfo);
+          const response = await axios.post(loginApiUrl, userInfo);
           if (response.status == 200) {
             var jwt = response.data.token;
             localStorage.setItem("jwtToken", jwt);
@@ -56,7 +57,18 @@ export const AuthForm = ({
       }
       if (formType == "signup") {
         try {
-          const response = await axios.post(apiUrl, userInfo);
+          const response = await axios.post(signupApiUrl, userInfo);
+          if (response.status == 200) {
+            try {
+              const login = await axios.post(loginApiUrl, userInfo);
+              if (login.status == 200) {
+                var jwt = login.data.token;
+                localStorage.setItem("jwtToken", jwt);
+              }
+            } catch (error) {
+              setFormError("Error occured try again");
+            }
+          }
           console.log(successMessage);
         } catch (error) {
           if (error.response.status === 409) {

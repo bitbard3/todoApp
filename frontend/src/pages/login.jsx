@@ -6,7 +6,6 @@ export const Login = () => {
     <AuthForm
       formType="login"
       buttonText="Login"
-      apiUrl="http://localhost:3000/login"
       successMessage="Logged in successfully"
       image={loginImage}
       text={
