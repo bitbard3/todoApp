@@ -7,6 +7,12 @@ export const Card = ({ title, desc, tag }) => {
   const todocheck = () => {
     setTodoDone(!tododone);
   };
+  const tagObject = {
+    work: "purple",
+    study: "red",
+    self: "green",
+    other: "blue",
+  };
   return (
     <div className="todocard bg-secondary px-4 py-3">
       <div className="vstack">
@@ -43,7 +49,7 @@ export const Card = ({ title, desc, tag }) => {
           </p>
         </div>
         <div className="todo-footer d-flex align-items-center pt-4">
-          <div className={`tag tag-${tag} rounded-circle`}></div>
+          <div className={`tag tag-${tagObject[tag]} rounded-circle`}></div>
           <Form className="ms-auto" onChange={todocheck}>
             <Form.Check type="checkbox" id="default-checkbox"></Form.Check>
           </Form>
