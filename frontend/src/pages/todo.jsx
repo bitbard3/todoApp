@@ -1,6 +1,9 @@
 import "../../node_modules/font-awesome/css/font-awesome.min.css";
 import axios from "axios";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
+import Modal from "react-bootstrap/Modal";
 import { Card } from "../components/Card";
 // import image from "../assets/images/login.png";
 export const Todo = () => {
@@ -11,6 +14,10 @@ export const Todo = () => {
   const [verified, setVerified] = useState(false);
   const [todos, setTodos] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
+  const [show, setShow] = useState(false);
+  const [selectedTag, setSelectedTag] = useState("work");
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
   useEffect(() => {
     const fetchData = async () => {
       const jwt = localStorage.getItem("jwtToken");
@@ -31,7 +38,7 @@ export const Todo = () => {
   const lastTodoIndex = currentPage * todosInPage;
   const firstTodoIndex = lastTodoIndex - todosInPage;
   const currentTodos = todos.slice(firstTodoIndex, lastTodoIndex);
-  const isLastPage = lastTodoIndex >= todos.length;
+  const isLastPage = lastTodoIndex >= todos.length || todos.length <= 4;
   const paginateForward = () => {
     setCurrentPage(currentPage + 1);
   };
@@ -43,7 +50,10 @@ export const Todo = () => {
       <div className="container">
         <div className="nav-container mt-3 d-flex align-items-center">
           <p className="fs-2 fw-bold text-primary">todo</p>
-          <i className="fa fa-plus text-primary icon ms-auto pt-2"></i>
+          <i
+            onClick={handleShow}
+            className="fa fa-plus text-primary icon ms-auto pt-2"
+          ></i>
         </div>
         <div className="row pt-5 pt-md-0">
           <div className="col-md-2 pt-md-7">
@@ -67,6 +77,44 @@ export const Todo = () => {
             </div>
           </div>
           <div className="col-md-9 pt-md-5">
+            <Modal show={show} onHide={handleClose} centered>
+              <Modal.Header closeButton>
+                <Modal.Title>Add todo item</Modal.Title>
+              </Modal.Header>
+              <Modal.Body>
+                <Form>
+                  <Form.Group className="mb-3">
+                    <Form.Label>Title</Form.Label>
+                    <Form.Control type="text" autoFocus />
+                  </Form.Group>
+                  <Form.Group className="mb-3">
+                    <Form.Label>Description</Form.Label>
+                    <Form.Control as="textarea" rows={3} />
+                  </Form.Group>
+                  <Form.Group className="mb-3">
+                    <Form.Label>Tag</Form.Label>
+                    <Form.Control
+                      as="select"
+                      onChange={(e) => setSelectedTag(e.target.value)}
+                      className="me-2"
+                    >
+                      <option value="work">Work</option>
+                      <option value="study">Study</option>
+                      <option value="self">Self</option>
+                      <option value="other">Other</option>
+                    </Form.Control>
+                  </Form.Group>
+                </Form>
+              </Modal.Body>
+              <Modal.Footer>
+                <Button variant="outline-dark" onClick={handleClose}>
+                  Close
+                </Button>
+                <Button variant="success" onClick={handleClose}>
+                  Add todo
+                </Button>
+              </Modal.Footer>
+            </Modal>
             <div className="row pt-3 pt-md-5">
               <div className="col-md-6 mb-md-0 mb-3">
                 {currentTodos[0] ? (
