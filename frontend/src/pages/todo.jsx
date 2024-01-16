@@ -1,15 +1,16 @@
 import "../../node_modules/font-awesome/css/font-awesome.min.css";
 import axios from "axios";
 import { useState, useEffect } from "react";
+import { Card } from "../components/Card";
 // import image from "../assets/images/login.png";
 export const Todo = () => {
   const todoUrl = "http://localhost:3000/mytodos";
-  const [verified, setVerified] = useState(false);
-  const [todos, setTodos] = useState([]);
+  const todosInPage = 4;
   // const maxCharLaptop = 128;
   // const maxCharMobile = 104;
-  const todosInPage = 4;
-  const [dividedTodo, setDividedTodo] = useState([]);
+  const [verified, setVerified] = useState(false);
+  const [todos, setTodos] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
   useEffect(() => {
     const fetchData = async () => {
       const jwt = localStorage.getItem("jwtToken");
@@ -27,17 +28,9 @@ export const Todo = () => {
     };
     fetchData();
   }, []);
-  useEffect(() => {
-    try {
-      const tempArray = [];
-      for (let i = 0; i < todos.length; i += todosInPage) {
-        tempArray.push(todos.slice(i, i + todosInPage));
-      }
-      setDividedTodo(tempArray);
-    } catch (error) {
-      console.log(error);
-    }
-  }, [todos]);
+  const lastTodoIndex = currentPage * todosInPage;
+  const firstTodoIndex = lastTodoIndex - todosInPage;
+  const currentTodos = todos.slice(firstTodoIndex, lastTodoIndex);
   return (
     <div>
       <div className="container">
@@ -69,12 +62,52 @@ export const Todo = () => {
           {verified ? (
             <div className="col-md-9 pt-md-5">
               <div className="row pt-3 pt-md-5">
-                <div className="col-md-6 mb-md-0 mb-3"></div>
-                <div className="col-md-6 mb-md-0 mb-3"></div>
+                <div className="col-md-6 mb-md-0 mb-3">
+                  {currentTodos[0] ? (
+                    <Card
+                      title={currentTodos[0].title}
+                      desc={currentTodos[0].description}
+                      tag={currentTodos[0].tag}
+                    ></Card>
+                  ) : (
+                    ""
+                  )}
+                </div>
+                <div className="col-md-6 mb-md-0 mb-3">
+                  {currentTodos[1] ? (
+                    <Card
+                      title={currentTodos[1].title}
+                      desc={currentTodos[1].description}
+                      tag={currentTodos[1].tag}
+                    ></Card>
+                  ) : (
+                    ""
+                  )}
+                </div>
               </div>
               <div className="row pt-md-5">
-                <div className="col-md-6 mb-md-0 mb-3"></div>
-                <div className="col-md-6 mb-md-0 mb-3"></div>
+                <div className="col-md-6 mb-md-0 mb-3">
+                  {currentTodos[2] ? (
+                    <Card
+                      title={currentTodos[2].title}
+                      desc={currentTodos[2].description}
+                      tag={currentTodos[2].tag}
+                    ></Card>
+                  ) : (
+                    ""
+                  )}
+                </div>
+                <div className="col-md-6 mb-md-0 mb-3">
+                  {currentTodos[3] ? (
+                    <Card
+                      title={currentTodos[3].title}
+                      desc={currentTodos[3].description}
+                      tag={currentTodos[3].tag}
+                    ></Card>
+                  ) : (
+                    ""
+                  )}
+                </div>
               </div>
             </div>
           ) : (
