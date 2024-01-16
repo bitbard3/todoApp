@@ -8,6 +8,8 @@ import { Card } from "../components/Card";
 // import image from "../assets/images/login.png";
 export const Todo = () => {
   const todoUrl = "http://localhost:3000/mytodos";
+  const addTodoUrl = "http://localhost:3000/newtodo";
+  const jwt = localStorage.getItem("jwtToken");
   const todosInPage = 4;
   // const maxCharLaptop = 128;
   // const maxCharMobile = 104;
@@ -15,12 +17,13 @@ export const Todo = () => {
   const [todos, setTodos] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [show, setShow] = useState(false);
+  const [newTodoTitle, setNewTodoTitle] = useState("");
+  const [newTodoDesc, setNewTodoDesc] = useState("");
   const [selectedTag, setSelectedTag] = useState("work");
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   useEffect(() => {
     const fetchData = async () => {
-      const jwt = localStorage.getItem("jwtToken");
       try {
         const response = await axios.get(todoUrl, {
           headers: {
@@ -35,6 +38,28 @@ export const Todo = () => {
     };
     fetchData();
   }, []);
+  const addTodo = async () => {
+    const data = {
+      title: newTodoTitle,
+      description: newTodoDesc,
+      tag: selectedTag,
+    };
+    try {
+      const response = await axios.post(addTodoUrl, data, {
+        headers: {
+          Authorization: jwt,
+        },
+      });
+      if (response.status === 200) {
+        setTodos([data, ...todos]);
+        handleClose();
+      }
+    } catch (error) {
+      console.log(error);
+      handleClose();
+    }
+  };
+
   const lastTodoIndex = currentPage * todosInPage;
   const firstTodoIndex = lastTodoIndex - todosInPage;
   const currentTodos = todos.slice(firstTodoIndex, lastTodoIndex);
@@ -85,11 +110,19 @@ export const Todo = () => {
                 <Form>
                   <Form.Group className="mb-3">
                     <Form.Label>Title</Form.Label>
-                    <Form.Control type="text" autoFocus />
+                    <Form.Control
+                      type="text"
+                      autoFocus
+                      onChange={(e) => setNewTodoTitle(e.target.value)}
+                    />
                   </Form.Group>
                   <Form.Group className="mb-3">
                     <Form.Label>Description</Form.Label>
-                    <Form.Control as="textarea" rows={3} />
+                    <Form.Control
+                      as="textarea"
+                      rows={2}
+                      onChange={(e) => setNewTodoDesc(e.target.value)}
+                    />
                   </Form.Group>
                   <Form.Group className="mb-3">
                     <Form.Label>Tag</Form.Label>
@@ -110,7 +143,7 @@ export const Todo = () => {
                 <Button variant="outline-dark" onClick={handleClose}>
                   Close
                 </Button>
-                <Button variant="success" onClick={handleClose}>
+                <Button variant="success" onClick={addTodo}>
                   Add todo
                 </Button>
               </Modal.Footer>
