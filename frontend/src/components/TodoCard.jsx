@@ -12,7 +12,7 @@ export const TodoCard = ({ title, desc, tag }) => {
       <div className="vstack">
         <div className="todo-nav d-flex align-items-center">
           <p
-            className={`fs-4 fw-bold text-primary ${
+            className={`fs-4 fw-bold text-primary overflow-hidden ${
               tododone ? `checkedtodo` : ``
             }`}
           >
@@ -35,7 +35,7 @@ export const TodoCard = ({ title, desc, tag }) => {
         </div>
         <div className="todo-desc pt-3">
           <p
-            className={`fw-light text-primary todo-desc-body ${
+            className={`fw-light text-primary todo-desc-body overflow-hidden ${
               tododone ? `checkedtodo` : ``
             }`}
           >
