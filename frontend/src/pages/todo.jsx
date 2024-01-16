@@ -31,6 +31,13 @@ export const Todo = () => {
   const lastTodoIndex = currentPage * todosInPage;
   const firstTodoIndex = lastTodoIndex - todosInPage;
   const currentTodos = todos.slice(firstTodoIndex, lastTodoIndex);
+  const isLastPage = lastTodoIndex >= todos.length;
+  const paginateForward = () => {
+    setCurrentPage(currentPage + 1);
+  };
+  const paginateBack = () => {
+    setCurrentPage(currentPage - 1);
+  };
   return (
     <div>
       <div className="container">
@@ -59,60 +66,76 @@ export const Todo = () => {
               </div>
             </div>
           </div>
-          {verified ? (
-            <div className="col-md-9 pt-md-5">
-              <div className="row pt-3 pt-md-5">
-                <div className="col-md-6 mb-md-0 mb-3">
-                  {currentTodos[0] ? (
-                    <Card
-                      title={currentTodos[0].title}
-                      desc={currentTodos[0].description}
-                      tag={currentTodos[0].tag}
-                    ></Card>
-                  ) : (
-                    ""
-                  )}
-                </div>
-                <div className="col-md-6 mb-md-0 mb-3">
-                  {currentTodos[1] ? (
-                    <Card
-                      title={currentTodos[1].title}
-                      desc={currentTodos[1].description}
-                      tag={currentTodos[1].tag}
-                    ></Card>
-                  ) : (
-                    ""
-                  )}
-                </div>
+          <div className="col-md-9 pt-md-5">
+            <div className="row pt-3 pt-md-5">
+              <div className="col-md-6 mb-md-0 mb-3">
+                {currentTodos[0] ? (
+                  <Card
+                    title={currentTodos[0].title}
+                    desc={currentTodos[0].description}
+                    tag={currentTodos[0].tag}
+                  ></Card>
+                ) : (
+                  ""
+                )}
               </div>
-              <div className="row pt-md-5">
-                <div className="col-md-6 mb-md-0 mb-3">
-                  {currentTodos[2] ? (
-                    <Card
-                      title={currentTodos[2].title}
-                      desc={currentTodos[2].description}
-                      tag={currentTodos[2].tag}
-                    ></Card>
-                  ) : (
-                    ""
-                  )}
-                </div>
-                <div className="col-md-6 mb-md-0 mb-3">
-                  {currentTodos[3] ? (
-                    <Card
-                      title={currentTodos[3].title}
-                      desc={currentTodos[3].description}
-                      tag={currentTodos[3].tag}
-                    ></Card>
-                  ) : (
-                    ""
-                  )}
+              <div className="col-md-6 mb-md-0 mb-3">
+                {currentTodos[1] ? (
+                  <Card
+                    title={currentTodos[1].title}
+                    desc={currentTodos[1].description}
+                    tag={currentTodos[1].tag}
+                  ></Card>
+                ) : (
+                  ""
+                )}
+              </div>
+            </div>
+            <div className="row pt-md-5">
+              <div className="col-md-6 mb-md-0 mb-3">
+                {currentTodos[2] ? (
+                  <Card
+                    title={currentTodos[2].title}
+                    desc={currentTodos[2].description}
+                    tag={currentTodos[2].tag}
+                  ></Card>
+                ) : (
+                  ""
+                )}
+              </div>
+              <div className="col-md-6 mb-md-0 mb-3">
+                {currentTodos[3] ? (
+                  <Card
+                    title={currentTodos[3].title}
+                    desc={currentTodos[3].description}
+                    tag={currentTodos[3].tag}
+                  ></Card>
+                ) : (
+                  ""
+                )}
+              </div>
+            </div>
+          </div>
+          <div className="col-md-1 d-none d-md-block pt-6">
+            <div className="row h-100 w-100">
+              <div className="col-12">
+                <div className="d-flex flex-column justify-content-around h-100 align-items-end">
+                  <i
+                    onClick={paginateForward}
+                    className={`fa fa-arrow-right icon text-primary me-n4 ${
+                      isLastPage ? `d-none` : ``
+                    }`}
+                  ></i>
+                  <i
+                    onClick={paginateBack}
+                    className={`fa fa-arrow-left icon text-primary me-n4 ${
+                      currentPage == 1 ? `d-none` : ``
+                    }`}
+                  ></i>
                 </div>
               </div>
             </div>
-          ) : (
-            <div className="">{/* <img src={image} alt="" /> */}</div>
-          )}
+          </div>
         </div>
       </div>
     </div>
