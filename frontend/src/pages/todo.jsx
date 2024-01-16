@@ -1,14 +1,13 @@
 import "../../node_modules/font-awesome/css/font-awesome.min.css";
 import axios from "axios";
 import { useState, useEffect } from "react";
-import image from "../assets/images/login.png";
-import { TodoCard } from "../components/TodoCard";
+// import image from "../assets/images/login.png";
 export const Todo = () => {
   const todoUrl = "http://localhost:3000/mytodos";
   const [verified, setVerified] = useState(false);
   const [todos, setTodos] = useState([]);
-  const maxCharLaptop = 128;
-  const maxCharMobile = 104;
+  // const maxCharLaptop = 128;
+  // const maxCharMobile = 104;
   const todosInPage = 4;
   const [dividedTodo, setDividedTodo] = useState([]);
   useEffect(() => {
@@ -39,7 +38,6 @@ export const Todo = () => {
       console.log(error);
     }
   }, [todos]);
-  console.log(dividedTodo);
   return (
     <div>
       <div className="container">
@@ -80,9 +78,7 @@ export const Todo = () => {
               </div>
             </div>
           ) : (
-            <div className="">
-              <img src={image} alt="" />
-            </div>
+            <div className="">{/* <img src={image} alt="" /> */}</div>
           )}
         </div>
       </div>
