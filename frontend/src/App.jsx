@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import "./styles/bootstrap.scss";
 import "./styles/style.scss";
 import { Routes, Route } from "react-router-dom";

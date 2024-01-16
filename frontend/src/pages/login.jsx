@@ -1,4 +1,3 @@
-import React from "react";
 import loginImage from "../assets/images/login.png";
 import { AuthForm } from "../components/AuthForm";
 export const Login = () => {
