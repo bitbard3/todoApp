@@ -19,7 +19,9 @@
 .red {
   color: #fabebe;
 }
-
+.light {
+  color: var(--light);
+}
 @keyframes moveDownAnimation {
   from {
     transform: translateY(0);
@@ -132,4 +134,23 @@
     height: 25px !important;
     width: 25px !important;
   }
+}
+.todocard {
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
+    rgba(0, 0, 0, 0.074) 0px 8px 10px -8px;
+}
+.todocard .btn {
+  border: 0 !important;
+}
+.dropdown-toggle::after,
+.dropdown-toggle::before {
+  display: none !important;
+}
+.dropdown-menu {
+  --bs-dropdown-link-active-bg: rgba(0, 0, 0, 0.106);
+}
+.checkedtodo {
+  text-decoration: line-through;
+  text-decoration-thickness: 1px;
+  text-decoration-color: inherit;
 }
