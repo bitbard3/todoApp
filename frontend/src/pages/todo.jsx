@@ -155,6 +155,7 @@ export const Todo = () => {
                     title={currentTodos[0].title}
                     desc={currentTodos[0].description}
                     tag={currentTodos[0].tag}
+                    id={currentTodos[0]._id}
                   ></Card>
                 ) : (
                   ""
@@ -166,6 +167,7 @@ export const Todo = () => {
                     title={currentTodos[1].title}
                     desc={currentTodos[1].description}
                     tag={currentTodos[1].tag}
+                    id={currentTodos[1]._id}
                   ></Card>
                 ) : (
                   ""
@@ -179,6 +181,7 @@ export const Todo = () => {
                     title={currentTodos[2].title}
                     desc={currentTodos[2].description}
                     tag={currentTodos[2].tag}
+                    id={currentTodos[2]._id}
                   ></Card>
                 ) : (
                   ""
@@ -190,6 +193,7 @@ export const Todo = () => {
                     title={currentTodos[3].title}
                     desc={currentTodos[3].description}
                     tag={currentTodos[3].tag}
+                    id={currentTodos[3]._id}
                   ></Card>
                 ) : (
                   ""
