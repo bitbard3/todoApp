@@ -26,7 +26,7 @@ router.post('/newtodo', loginMiddleware, userExistMiddleware, async (req, res) =
             }
         }
     )
-    res.json({ msg: "todo created" })
+    res.json({ id: todo._id })
 })
 router.get('/mytodos', loginMiddleware, userExistMiddleware, async (req, res) => {
     const user = req.user
@@ -69,10 +69,15 @@ router.put("/updatetodo/:todoid", loginMiddleware, userExistMiddleware, async (r
     if (userInput.completed != undefined) {
         updateObject.$set.completed = userInput.completed
     }
-    const updatedTodo = await Todo.updateOne(
-        { _id: todoId },
-        updateObject
-    )
+    try {
+        var updatedTodo = await Todo.updateOne(
+            { _id: todoId },
+            updateObject
+        )
+    } catch (error) {
+        console.log(error)
+    }
+
     res.json({ msg: "Updated", updatedTodo })
 })
 router.delete("/deletetodo/:todoid", loginMiddleware, userExistMiddleware, async (req, res) => {
