@@ -4,13 +4,12 @@ import axios from "axios";
 import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
-export const Card = ({ title, desc, tag, id, completed }) => {
+export const Card = ({ title, desc, tag, id, completed, del }) => {
   const [tododone, setTodoDone] = useState(completed);
   const [show, setShow] = useState(false);
   const jwt = localStorage.getItem("jwtToken");
   const updateUrl = "http://localhost:3000/updatetodo/";
-  const deleteUrl = "http://localhost:3000//deletetodo/";
-
+  const deleteUrl = "http://localhost:3000/deletetodo/";
   const todocheck = () => {
     setTodoDone(!tododone);
   };
@@ -40,6 +39,20 @@ export const Card = ({ title, desc, tag, id, completed }) => {
       console.log(error);
     }
   };
+  const deleteTodo = async () => {
+    try {
+      const response = await axios.delete(deleteUrl + id, {
+        headers: {
+          Authorization: jwt,
+        },
+      });
+      del(id);
+      handleClose();
+    } catch (error) {
+      console.log(error);
+      handleClose();
+    }
+  };
   return (
     <div className="todocard bg-secondary px-4 py-3">
       <Modal show={show} onHide={handleClose} centered>
@@ -53,7 +66,7 @@ export const Card = ({ title, desc, tag, id, completed }) => {
           <Button variant="light" onClick={handleClose}>
             Close
           </Button>
-          <Button className="text-white" variant="danger" onClick={handleClose}>
+          <Button className="text-white" variant="danger" onClick={deleteTodo}>
             Delete
           </Button>
         </Modal.Footer>

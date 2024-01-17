@@ -64,6 +64,14 @@ export const Todo = () => {
       handleClose();
     }
   };
+  const deleteTodosState = (id) => {
+    const newTodos = todos.filter((todo) => todo._id != id);
+    if (newTodos.length % 4 == 0) {
+      paginateBack();
+      console.log(currentPage);
+    }
+    setTodos(newTodos);
+  };
   const lastTodoIndex = currentPage * todosInPage;
   const firstTodoIndex = lastTodoIndex - todosInPage;
   const currentTodos = todos.slice(firstTodoIndex, lastTodoIndex);
@@ -176,6 +184,7 @@ export const Todo = () => {
                     id={currentTodos[0]._id}
                     completed={currentTodos[0].completed}
                     key={currentTodos[0]._id}
+                    del={deleteTodosState}
                   ></Card>
                 ) : (
                   ""
@@ -190,6 +199,7 @@ export const Todo = () => {
                     id={currentTodos[1]._id}
                     completed={currentTodos[1].completed}
                     key={currentTodos[1]._id}
+                    del={deleteTodosState}
                   ></Card>
                 ) : (
                   ""
@@ -206,6 +216,7 @@ export const Todo = () => {
                     id={currentTodos[2]._id}
                     completed={currentTodos[2].completed}
                     key={currentTodos[2]._id}
+                    del={deleteTodosState}
                   ></Card>
                 ) : (
                   ""
@@ -220,6 +231,7 @@ export const Todo = () => {
                     id={currentTodos[3]._id}
                     completed={currentTodos[3].completed}
                     key={currentTodos[3]._id}
+                    del={deleteTodosState}
                   ></Card>
                 ) : (
                   ""
