@@ -43,6 +43,7 @@ export const Todo = () => {
       title: newTodoTitle,
       description: newTodoDesc,
       tag: selectedTag,
+      _id: "",
     };
     try {
       const response = await axios.post(addTodoUrl, data, {
@@ -51,7 +52,11 @@ export const Todo = () => {
         },
       });
       if (response.status === 200) {
-        setTodos([data, ...todos]);
+        const newTodoWithId = {
+          ...data,
+          _id: response.data.id,
+        };
+        setTodos([...todos, newTodoWithId]);
         handleClose();
       }
     } catch (error) {
@@ -59,7 +64,6 @@ export const Todo = () => {
       handleClose();
     }
   };
-
   const lastTodoIndex = currentPage * todosInPage;
   const firstTodoIndex = lastTodoIndex - todosInPage;
   const currentTodos = todos.slice(firstTodoIndex, lastTodoIndex);
@@ -156,6 +160,8 @@ export const Todo = () => {
                     desc={currentTodos[0].description}
                     tag={currentTodos[0].tag}
                     id={currentTodos[0]._id}
+                    completed={currentTodos[0].completed}
+                    key={currentTodos[0]._id}
                   ></Card>
                 ) : (
                   ""
@@ -168,6 +174,8 @@ export const Todo = () => {
                     desc={currentTodos[1].description}
                     tag={currentTodos[1].tag}
                     id={currentTodos[1]._id}
+                    completed={currentTodos[1].completed}
+                    key={currentTodos[1]._id}
                   ></Card>
                 ) : (
                   ""
@@ -182,6 +190,8 @@ export const Todo = () => {
                     desc={currentTodos[2].description}
                     tag={currentTodos[2].tag}
                     id={currentTodos[2]._id}
+                    completed={currentTodos[2].completed}
+                    key={currentTodos[2]._id}
                   ></Card>
                 ) : (
                   ""
@@ -194,6 +204,8 @@ export const Todo = () => {
                     desc={currentTodos[3].description}
                     tag={currentTodos[3].tag}
                     id={currentTodos[3]._id}
+                    completed={currentTodos[3].completed}
+                    key={currentTodos[3]._id}
                   ></Card>
                 ) : (
                   ""
