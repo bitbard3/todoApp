@@ -105,6 +105,20 @@ export const Todo = () => {
               </div>
             </div>
           </div>
+          <div className="d-flex d-md-none justify-content-start w-100">
+            <i
+              onClick={paginateBack}
+              className={`fa fa-arrow-left icon text-primary ${
+                currentPage == 1 ? `d-none` : ``
+              }`}
+            ></i>
+            <i
+              onClick={paginateForward}
+              className={`fa fa-arrow-right icon text-primary ms-auto ${
+                isLastPage ? `d-none` : ``
+              }`}
+            ></i>
+          </div>
           <div className="col-md-9 pt-md-5">
             <Modal show={show} onHide={handleClose} centered>
               <Modal.Header closeButton>
