@@ -2,14 +2,20 @@ import Dropdown from "react-bootstrap/Dropdown";
 import Form from "react-bootstrap/Form";
 import axios from "axios";
 import { useState } from "react";
+import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
 export const Card = ({ title, desc, tag, id, completed }) => {
   const [tododone, setTodoDone] = useState(completed);
-
+  const [show, setShow] = useState(false);
   const jwt = localStorage.getItem("jwtToken");
   const updateUrl = "http://localhost:3000/updatetodo/";
+  const deleteUrl = "http://localhost:3000//deletetodo/";
+
   const todocheck = () => {
     setTodoDone(!tododone);
   };
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
   const tagObject = {
     work: "purple",
     study: "red",
@@ -36,6 +42,22 @@ export const Card = ({ title, desc, tag, id, completed }) => {
   };
   return (
     <div className="todocard bg-secondary px-4 py-3">
+      <Modal show={show} onHide={handleClose} centered>
+        <Modal.Header closeButton>
+          <Modal.Title>Confirm Action</Modal.Title>
+        </Modal.Header>
+        <Modal.Body className="text-primary">
+          Are you sure you want to delete this task?
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="light" onClick={handleClose}>
+            Close
+          </Button>
+          <Button className="text-white" variant="danger" onClick={handleClose}>
+            Delete
+          </Button>
+        </Modal.Footer>
+      </Modal>
       <div className="vstack">
         <div className="todo-nav d-flex align-items-center">
           <p
@@ -50,11 +72,11 @@ export const Card = ({ title, desc, tag, id, completed }) => {
               <i className="fa fa-ellipsis-h icon light me-n2"></i>
             </Dropdown.Toggle>
             <Dropdown.Menu>
-              <Dropdown.Item className="light" href="#/action-1">
+              <Dropdown.Item className="light">
                 Edit...
                 <Dropdown.Divider />
               </Dropdown.Item>
-              <Dropdown.Item className="light" href="#/action-2">
+              <Dropdown.Item onClick={handleShow} className="light">
                 Delete
               </Dropdown.Item>
             </Dropdown.Menu>
