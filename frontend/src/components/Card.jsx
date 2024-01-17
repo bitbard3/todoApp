@@ -1,9 +1,12 @@
 import Dropdown from "react-bootstrap/Dropdown";
 import Form from "react-bootstrap/Form";
-import React from "react";
+import axios from "axios";
 import { useState } from "react";
-export const Card = ({ title, desc, tag }) => {
-  const [tododone, setTodoDone] = useState(false);
+export const Card = ({ title, desc, tag, id, completed }) => {
+  const [tododone, setTodoDone] = useState(completed);
+
+  const jwt = localStorage.getItem("jwtToken");
+  const updateUrl = "http://localhost:3000/updatetodo/";
   const todocheck = () => {
     setTodoDone(!tododone);
   };
@@ -12,6 +15,24 @@ export const Card = ({ title, desc, tag }) => {
     study: "red",
     self: "green",
     other: "blue",
+  };
+  const onCheckboxChangeHandler = async () => {
+    todocheck();
+    try {
+      const response = await axios.put(
+        updateUrl + id,
+        {
+          completed: !tododone,
+        },
+        {
+          headers: {
+            Authorization: jwt,
+          },
+        }
+      );
+    } catch (error) {
+      console.log(error);
+    }
   };
   return (
     <div className="todocard bg-secondary px-4 py-3">
@@ -50,8 +71,13 @@ export const Card = ({ title, desc, tag }) => {
         </div>
         <div className="todo-footer d-flex align-items-center pt-4">
           <div className={`tag tag-${tagObject[tag]} rounded-circle`}></div>
-          <Form className="ms-auto" onChange={todocheck}>
-            <Form.Check type="checkbox" id="default-checkbox"></Form.Check>
+          <Form className="ms-auto">
+            <Form.Check
+              type="checkbox"
+              id="default-checkbox"
+              checked={tododone}
+              onChange={onCheckboxChangeHandler}
+            ></Form.Check>
           </Form>
         </div>
       </div>
