@@ -5,6 +5,7 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import { Card } from "../components/Card";
+import React from "react";
 // import image from "../assets/images/login.png";
 export const Todo = () => {
   const todoUrl = "http://localhost:3000/mytodos";
@@ -19,7 +20,8 @@ export const Todo = () => {
   const [show, setShow] = useState(false);
   const [newTodoTitle, setNewTodoTitle] = useState("");
   const [newTodoDesc, setNewTodoDesc] = useState("");
-  const [selectedTag, setSelectedTag] = useState("work");
+  const [defselectedTag, setdefSelectedTag] = useState("work");
+  const [selectedTag, setSelectedTag] = useState("");
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   useEffect(() => {
@@ -42,7 +44,7 @@ export const Todo = () => {
     const data = {
       title: newTodoTitle,
       description: newTodoDesc,
-      tag: selectedTag,
+      tag: defselectedTag,
       _id: "",
     };
     try {
@@ -83,10 +85,23 @@ export const Todo = () => {
     };
     setTodos(updatedTodos);
   };
-
+  const handleTagClick = (e) => {
+    const value = e.currentTarget
+      .querySelector(".tagname")
+      .getAttribute("value");
+    if (selectedTag == value) {
+      setSelectedTag("");
+      return;
+    }
+    setSelectedTag(value);
+  };
+  const filterTodos =
+    selectedTag !== ""
+      ? todos.filter((todo) => todo.tag === selectedTag)
+      : todos;
   const lastTodoIndex = currentPage * todosInPage;
   const firstTodoIndex = lastTodoIndex - todosInPage;
-  const currentTodos = todos.slice(firstTodoIndex, lastTodoIndex);
+  const currentTodos = filterTodos.slice(firstTodoIndex, lastTodoIndex);
   const isLastPage = lastTodoIndex >= todos.length || todos.length <= 4;
   const paginateForward = () => {
     setCurrentPage(currentPage + 1);
@@ -107,22 +122,39 @@ export const Todo = () => {
         <div className="row pt-5 pt-md-0">
           <div className="col-md-2 pt-md-7">
             <div className="d-flex flex-md-column gap-md-4 gap-3 justify-content-center">
-              <div className="d-flex gap-md-3 gap-2 mb-2">
-                <div className="tag tag-purple rounded-circle"></div>
-                <p className="fs-5 tagname">work</p>
-              </div>
-              <div className="d-flex gap-md-3 gap-2 mb-2">
-                <div className="tag tag-red rounded-circle"></div>
-                <p className="fs-5 tagname">study</p>
-              </div>
-              <div className="d-flex gap-md-3 gap-2 mb-2">
-                <div className="tag tag-green rounded-circle"></div>
-                <p className="fs-5 tagname">self</p>
-              </div>
-              <div className="d-flex gap-md-3 gap-2 mb-2">
-                <div className="tag tag-blue rounded-circle"></div>
-                <p className="fs-5 tagname">other</p>
-              </div>
+              <button className="btn" onClick={(e) => handleTagClick(e)}>
+                <div className="d-flex gap-md-3 gap-2 mb-2">
+                  <div className="tag tag-purple rounded-circle"></div>
+                  <p value={"work"} className="fs-5 tagname">
+                    work
+                  </p>
+                </div>
+              </button>
+
+              <button className="btn" onClick={(e) => handleTagClick(e)}>
+                <div className="d-flex gap-md-3 gap-2 mb-2">
+                  <div className="tag tag-red rounded-circle"></div>
+                  <p value={"study"} className="fs-5 tagname">
+                    study
+                  </p>
+                </div>
+              </button>
+              <button className="btn" onClick={(e) => handleTagClick(e)}>
+                <div className="d-flex gap-md-3 gap-2 mb-2">
+                  <div className="tag tag-green rounded-circle"></div>
+                  <p value={"self"} className="fs-5 tagname">
+                    self
+                  </p>
+                </div>
+              </button>
+              <button className="btn" onClick={(e) => handleTagClick(e)}>
+                <div className="d-flex gap-md-3 gap-2 mb-2">
+                  <div className="tag tag-blue rounded-circle"></div>
+                  <p value={"other"} className="fs-5 tagname">
+                    other
+                  </p>
+                </div>
+              </button>
             </div>
           </div>
           <div className="d-flex d-md-none justify-content-start w-100">
@@ -166,7 +198,7 @@ export const Todo = () => {
                     <Form.Label>Tag</Form.Label>
                     <Form.Control
                       as="select"
-                      onChange={(e) => setSelectedTag(e.target.value)}
+                      onChange={(e) => setdefSelectedTag(e.target.value)}
                       className="me-2"
                     >
                       <option value="work">Work</option>
