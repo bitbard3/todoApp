@@ -31,7 +31,7 @@ export const Todo = () => {
           },
         });
         setVerified(true);
-        setTodos(response.data.todos);
+        setTodos(response.data.todos.reverse());
       } catch (error) {
         console.log(error);
       }
@@ -56,7 +56,7 @@ export const Todo = () => {
           ...data,
           _id: response.data.id,
         };
-        setTodos([...todos, newTodoWithId]);
+        setTodos([newTodoWithId, ...todos]);
         handleClose();
       }
     } catch (error) {
@@ -72,6 +72,18 @@ export const Todo = () => {
     }
     setTodos(newTodos);
   };
+  const updateTodoState = (data) => {
+    const todoToUpdateIndex = todos.findIndex((todo) => todo._id == data._id);
+    const updatedTodos = [...todos];
+    updatedTodos[todoToUpdateIndex] = {
+      ...updatedTodos[todoToUpdateIndex],
+      title: data.title,
+      description: data.description,
+      tag: data.tag,
+    };
+    setTodos(updatedTodos);
+  };
+
   const lastTodoIndex = currentPage * todosInPage;
   const firstTodoIndex = lastTodoIndex - todosInPage;
   const currentTodos = todos.slice(firstTodoIndex, lastTodoIndex);
@@ -185,6 +197,7 @@ export const Todo = () => {
                     completed={currentTodos[0].completed}
                     key={currentTodos[0]._id}
                     del={deleteTodosState}
+                    update={updateTodoState}
                   ></Card>
                 ) : (
                   ""
@@ -200,6 +213,7 @@ export const Todo = () => {
                     completed={currentTodos[1].completed}
                     key={currentTodos[1]._id}
                     del={deleteTodosState}
+                    update={updateTodoState}
                   ></Card>
                 ) : (
                   ""
@@ -217,6 +231,7 @@ export const Todo = () => {
                     completed={currentTodos[2].completed}
                     key={currentTodos[2]._id}
                     del={deleteTodosState}
+                    update={updateTodoState}
                   ></Card>
                 ) : (
                   ""
@@ -232,6 +247,7 @@ export const Todo = () => {
                     completed={currentTodos[3].completed}
                     key={currentTodos[3]._id}
                     del={deleteTodosState}
+                    update={updateTodoState}
                   ></Card>
                 ) : (
                   ""
