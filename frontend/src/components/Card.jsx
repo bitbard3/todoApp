@@ -4,17 +4,23 @@ import axios from "axios";
 import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
-export const Card = ({ title, desc, tag, id, completed, del }) => {
+export const Card = ({ title, desc, tag, id, completed, del, update }) => {
   const [tododone, setTodoDone] = useState(completed);
-  const [show, setShow] = useState(false);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [showUpdateModal, setShowUpdateModal] = useState(false);
+  const [updatetodoTitle, setUpdateTodoTitle] = useState(title);
+  const [updateTodoDesc, setUpdateTodoDesc] = useState(desc);
+  const [updateSelectedTag, setUpdateSelectedTag] = useState(tag);
   const jwt = localStorage.getItem("jwtToken");
   const updateUrl = "http://localhost:3000/updatetodo/";
   const deleteUrl = "http://localhost:3000/deletetodo/";
   const todocheck = () => {
     setTodoDone(!tododone);
   };
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const handleCloseDeleteModal = () => setShowDeleteModal(false);
+  const handleShowDeleteModal = () => setShowDeleteModal(true);
+  const handleCloseUpdateModal = () => setShowUpdateModal(false);
+  const handleShowUpdateModal = () => setShowUpdateModal(true);
   const tagObject = {
     work: "purple",
     study: "red",
@@ -47,15 +53,38 @@ export const Card = ({ title, desc, tag, id, completed, del }) => {
         },
       });
       del(id);
-      handleClose();
+      handleCloseDeleteModal();
     } catch (error) {
       console.log(error);
-      handleClose();
+      handleCloseDeleteModal();
+    }
+  };
+  const updateTodoDetails = async () => {
+    const data = {
+      title: updatetodoTitle,
+      description: updateTodoDesc,
+      tag: updateSelectedTag,
+    };
+    try {
+      const response = await axios.put(updateUrl + id, data, {
+        headers: {
+          Authorization: jwt,
+        },
+      });
+      if (response.status == 200) {
+        data._id = id;
+        update(data);
+      }
+      handleCloseUpdateModal();
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+      handleCloseUpdateModal();
     }
   };
   return (
     <div className="todocard bg-secondary px-4 py-3">
-      <Modal show={show} onHide={handleClose} centered>
+      <Modal show={showDeleteModal} onHide={handleCloseDeleteModal} centered>
         <Modal.Header closeButton>
           <Modal.Title>Confirm Action</Modal.Title>
         </Modal.Header>
@@ -63,11 +92,60 @@ export const Card = ({ title, desc, tag, id, completed, del }) => {
           Are you sure you want to delete this task?
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="light" onClick={handleClose}>
+          <Button variant="light" onClick={handleCloseDeleteModal}>
             Close
           </Button>
           <Button className="text-white" variant="danger" onClick={deleteTodo}>
             Delete
+          </Button>
+        </Modal.Footer>
+      </Modal>
+      <Modal show={showUpdateModal} onHide={handleCloseUpdateModal} centered>
+        <Modal.Header closeButton>
+          <Modal.Title>Update todo item</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Form>
+            <Form.Group className="mb-3">
+              <Form.Label>Title</Form.Label>
+              <Form.Control
+                type="text"
+                autoFocus
+                value={updatetodoTitle}
+                onChange={(e) => setUpdateTodoTitle(e.target.value)}
+              />
+            </Form.Group>
+            <Form.Group className="mb-3">
+              <Form.Label>Description</Form.Label>
+              <Form.Control
+                as="textarea"
+                value={updateTodoDesc}
+                rows={2}
+                onChange={(e) => setUpdateTodoDesc(e.target.value)}
+              />
+            </Form.Group>
+            <Form.Group className="mb-3">
+              <Form.Label>Tag</Form.Label>
+              <Form.Control
+                as="select"
+                value={updateSelectedTag}
+                onChange={(e) => setUpdateSelectedTag(e.target.value)}
+                className="me-2"
+              >
+                <option value="work">Work</option>
+                <option value="study">Study</option>
+                <option value="self">Self</option>
+                <option value="other">Other</option>
+              </Form.Control>
+            </Form.Group>
+          </Form>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="outline-dark" onClick={handleCloseUpdateModal}>
+            Close
+          </Button>
+          <Button variant="success" onClick={updateTodoDetails}>
+            Update
           </Button>
         </Modal.Footer>
       </Modal>
@@ -85,11 +163,11 @@ export const Card = ({ title, desc, tag, id, completed, del }) => {
               <i className="fa fa-ellipsis-h icon light me-n2"></i>
             </Dropdown.Toggle>
             <Dropdown.Menu>
-              <Dropdown.Item className="light">
+              <Dropdown.Item onClick={handleShowUpdateModal} className="light">
                 Edit...
                 <Dropdown.Divider />
               </Dropdown.Item>
-              <Dropdown.Item onClick={handleShow} className="light">
+              <Dropdown.Item onClick={handleShowDeleteModal} className="light">
                 Delete
               </Dropdown.Item>
             </Dropdown.Menu>
