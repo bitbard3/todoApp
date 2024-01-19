@@ -86,14 +86,18 @@ export const Todo = () => {
     setTodos(updatedTodos);
   };
   const handleTagClick = (e) => {
-    const value = e.currentTarget
+    const clickedTag = e.currentTarget
       .querySelector(".tagname")
       .getAttribute("value");
-    if (selectedTag == value) {
-      setSelectedTag("");
-      return;
-    }
-    setSelectedTag(value);
+    document.querySelectorAll(".tag-button").forEach((button) => {
+      if (button !== e.currentTarget) {
+        button.classList.remove("active");
+      }
+    });
+    e.currentTarget.classList.toggle("active");
+    setSelectedTag((prevSelectedTag) =>
+      prevSelectedTag === clickedTag ? "" : clickedTag
+    );
   };
   const filterTodos =
     selectedTag !== ""
@@ -122,38 +126,42 @@ export const Todo = () => {
         <div className="row pt-5 pt-md-0">
           <div className="col-md-2 pt-md-7">
             <div className="d-flex flex-md-column gap-md-4 gap-3 justify-content-center">
-              <button className="btn" onClick={(e) => handleTagClick(e)}>
-                <div className="d-flex gap-md-3 gap-2 mb-2">
-                  <div className="tag tag-purple rounded-circle"></div>
-                  <p value={"work"} className="fs-5 tagname">
-                    work
-                  </p>
-                </div>
+              <button
+                className="btn tag-button d-flex align-items-center gap-md-3 gap-2 mb-2"
+                onClick={(e) => handleTagClick(e)}
+              >
+                <div className="tag tag-purple rounded-circle"></div>
+                <p value={"work"} className="fs-5 tagname">
+                  work
+                </p>
               </button>
 
-              <button className="btn" onClick={(e) => handleTagClick(e)}>
-                <div className="d-flex gap-md-3 gap-2 mb-2">
-                  <div className="tag tag-red rounded-circle"></div>
-                  <p value={"study"} className="fs-5 tagname">
-                    study
-                  </p>
-                </div>
+              <button
+                className="btn tag-button d-flex align-items-center gap-md-3 gap-2 mb-2"
+                onClick={(e) => handleTagClick(e)}
+              >
+                <div className="tag tag-red rounded-circle"></div>
+                <p value={"study"} className="fs-5 tagname">
+                  study
+                </p>
               </button>
-              <button className="btn" onClick={(e) => handleTagClick(e)}>
-                <div className="d-flex gap-md-3 gap-2 mb-2">
-                  <div className="tag tag-green rounded-circle"></div>
-                  <p value={"self"} className="fs-5 tagname">
-                    self
-                  </p>
-                </div>
+              <button
+                className="btn tag-button d-flex align-items-center gap-md-3 gap-2 mb-2"
+                onClick={(e) => handleTagClick(e)}
+              >
+                <div className="tag tag-green rounded-circle"></div>
+                <p value={"self"} className="fs-5 tagname">
+                  self
+                </p>
               </button>
-              <button className="btn" onClick={(e) => handleTagClick(e)}>
-                <div className="d-flex gap-md-3 gap-2 mb-2">
-                  <div className="tag tag-blue rounded-circle"></div>
-                  <p value={"other"} className="fs-5 tagname">
-                    other
-                  </p>
-                </div>
+              <button
+                className="btn tag-button d-flex align-items-center gap-md-3 gap-2 mb-2"
+                onClick={(e) => handleTagClick(e)}
+              >
+                <div className="tag tag-blue rounded-circle"></div>
+                <p value={"other"} className="fs-5 tagname">
+                  other
+                </p>
               </button>
             </div>
           </div>
