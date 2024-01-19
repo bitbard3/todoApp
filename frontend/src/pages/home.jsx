@@ -2,6 +2,7 @@ import React from "react";
 import cuteimg1 from "../assets/images/girl1.png";
 import cuteimg2 from "../assets/images/boy1.png";
 import cuteimg3 from "../assets/images/girl2.png";
+import hometodo from "../assets/images/hometodo.png";
 export const Home = () => {
   return (
     <div>
@@ -28,10 +29,18 @@ export const Home = () => {
         <div className="pt-5">
           <button className="btn btn-primary px-5 fw-bold">Get Started</button>
         </div>
-        <div className="img-container mt-5">
+        <div className="img-container mt-6 mt-md-5">
           <img src={cuteimg1} alt="" className="avatar" />
-          <img src={cuteimg2} alt="" className="avatar ms-n5" />
-          <img src={cuteimg3} alt="" className="avatar ms-n5" />
+          <img src={cuteimg2} alt="" className="avatar ms-n3 ms-md-n5" />
+          <img src={cuteimg3} alt="" className="avatar ms-n3 ms-md-n5" />
+        </div>
+        <div className="todo-img-container">
+          <img
+            style={{ height: "11rem", width: "30rem" }}
+            src={hometodo}
+            alt=""
+            className="todo-img"
+          />
         </div>
       </div>
     </div>
