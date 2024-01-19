@@ -1,6 +1,6 @@
 import "../../node_modules/font-awesome/css/font-awesome.min.css";
 import axios from "axios";
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
@@ -106,7 +106,8 @@ export const Todo = () => {
   const lastTodoIndex = currentPage * todosInPage;
   const firstTodoIndex = lastTodoIndex - todosInPage;
   const currentTodos = filterTodos.slice(firstTodoIndex, lastTodoIndex);
-  const isLastPage = lastTodoIndex >= todos.length || todos.length <= 4;
+  const isLastPage =
+    lastTodoIndex >= filterTodos.length || filterTodos.length <= 4;
   const paginateForward = () => {
     setCurrentPage(currentPage + 1);
   };
