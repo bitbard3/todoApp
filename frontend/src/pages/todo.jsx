@@ -86,6 +86,7 @@ export const Todo = () => {
     setTodos(updatedTodos);
   };
   const handleTagClick = (e) => {
+    setCurrentPage(1);
     const clickedTag = e.currentTarget
       .querySelector(".tagname")
       .getAttribute("value");
