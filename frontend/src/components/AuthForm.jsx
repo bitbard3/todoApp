@@ -138,7 +138,7 @@ export const AuthForm = ({
               </form>
               <div className="image-container pt-5 d-md-none">
                 <img
-                  style={{ height: "10rem", width: "10rem" }}
+                  style={{ height: "10rem", width: "7.5rem" }}
                   src={image}
                   alt=""
                 />

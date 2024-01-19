@@ -1,7 +1,7 @@
 import React from "react";
-import cuteimg1 from "../assets/images/CuteAvatar.png";
-import cuteimg2 from "../assets/images/CuteAvatar2.png";
-import cuteimg3 from "../assets/images/CuteAvatar3.png";
+import cuteimg1 from "../assets/images/girl1.png";
+import cuteimg2 from "../assets/images/boy1.png";
+import cuteimg3 from "../assets/images/girl2.png";
 export const Home = () => {
   return (
     <div>
@@ -30,8 +30,8 @@ export const Home = () => {
         </div>
         <div className="img-container mt-5">
           <img src={cuteimg1} alt="" className="avatar" />
-          <img src={cuteimg2} alt="" className="avatar" />
-          <img src={cuteimg3} alt="" className="avatar" />
+          <img src={cuteimg2} alt="" className="avatar ms-n5" />
+          <img src={cuteimg3} alt="" className="avatar ms-n5" />
         </div>
       </div>
     </div>
