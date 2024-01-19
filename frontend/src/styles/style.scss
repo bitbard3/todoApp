@@ -158,3 +158,18 @@
   text-decoration-thickness: 1px;
   text-decoration-color: inherit;
 }
+.tag-button {
+  --bs-btn-bg: #f5f5f5;
+  --bs-btn-hover-border-color: #b2aeae;
+}
+.tag-button:hover {
+  box-shadow: rgba(36, 36, 36, 0.2) -5px 16px 10px -10px;
+}
+.active {
+  box-shadow: rgba(205, 205, 205, 0.4) -5px 5px,
+    rgba(200, 200, 200, 0.3) -10px 10px;
+}
+.active:hover {
+  box-shadow: rgba(205, 205, 205, 0.4) -4px 3px,
+    rgba(200, 200, 200, 0.3) -10px 7px;
+}
