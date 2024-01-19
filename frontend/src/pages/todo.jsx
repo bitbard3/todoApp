@@ -68,7 +68,7 @@ export const Todo = () => {
   };
   const deleteTodosState = (id) => {
     const newTodos = todos.filter((todo) => todo._id != id);
-    if (newTodos.length % 4 == 0) {
+    if (newTodos.length % 4 == 0 && currentPage > 1) {
       paginateBack();
       console.log(currentPage);
     }
@@ -126,6 +126,7 @@ export const Todo = () => {
   const paginateBack = () => {
     setCurrentPage(currentPage - 1);
   };
+  console.log(currentPage);
   return (
     <div>
       <div className="container">
