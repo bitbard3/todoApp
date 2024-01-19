@@ -41,6 +41,11 @@ export const Card = ({ title, desc, tag, id, completed, del, update }) => {
           },
         }
       );
+      const data = {
+        _id: id,
+        completed: !tododone,
+      };
+      update(data);
     } catch (error) {
       console.log(error);
     }

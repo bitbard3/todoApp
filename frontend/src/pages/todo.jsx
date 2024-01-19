@@ -79,9 +79,20 @@ export const Todo = () => {
     const updatedTodos = [...todos];
     updatedTodos[todoToUpdateIndex] = {
       ...updatedTodos[todoToUpdateIndex],
-      title: data.title,
-      description: data.description,
-      tag: data.tag,
+      title:
+        data.title !== undefined
+          ? data.title
+          : updatedTodos[todoToUpdateIndex].title,
+      description:
+        data.description !== undefined
+          ? data.description
+          : updatedTodos[todoToUpdateIndex].description,
+      tag:
+        data.tag !== undefined ? data.tag : updatedTodos[todoToUpdateIndex].tag,
+      completed:
+        data.completed !== undefined
+          ? data.completed
+          : updatedTodos[todoToUpdateIndex].completed,
     };
     setTodos(updatedTodos);
   };
