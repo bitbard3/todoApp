@@ -90,12 +90,19 @@ export const AuthForm = ({
         <AuthText text={text} img={image}></AuthText>
         <div className="col-md-6 vh-100 hero">
           <div className="container">
-            <div className="d-flex justify-content-center justify-content-md-end pt-7 p-md-4">
+            <div className="d-flex align-items-center align-items-md-start flex-column flex-md-row justify-content-center justify-content-md-end pt-7 p-md-4">
               <Link style={{ textDecoration: "none" }} to={"/"}>
                 <h1 className="fs-3 fw-bold text-primary brand-text">todo</h1>
               </Link>
+              <div className="image-container pt-5 d-md-none">
+                <img
+                  style={{ height: "10rem", width: "7.5rem" }}
+                  src={image}
+                  alt=""
+                />
+              </div>
             </div>
-            <p className="fs-1 text-center  mb-5 mb-md-6 mt-7 account-custom">
+            <p className="fs-1 text-center  mb-5 mb-md-6 mt-md-7 mt-0 account-custom">
               {headingText}
             </p>
             <div className="container d-flex flex-column align-items-center">
@@ -135,19 +142,12 @@ export const AuthForm = ({
                     <p className="text-danger error mt-2 mb-n1">{formError}</p>
                   )}
                 </div>
-                <div className="d-grid w-100 mt-5">
+                <div className="d-grid w-100 mt-4 mt-md-5">
                   <button className="btn btn-primary rounded-3">
                     {buttonText}
                   </button>
                 </div>
               </form>
-              <div className="image-container pt-5 d-md-none">
-                <img
-                  style={{ height: "10rem", width: "7.5rem" }}
-                  src={image}
-                  alt=""
-                />
-              </div>
             </div>
           </div>
         </div>
