@@ -87,15 +87,6 @@
   width: 10rem;
 }
 
-.todo-img {
-  height: 7.5rem !important;
-  width: 20rem !important;
-}
-
-.png-img-container .mb-n2 {
-  margin-bottom: -0.7rem !important;
-}
-
 .tag-green {
   background-color: var(--green) !important;
 }
@@ -221,6 +212,14 @@
   .error-image {
     height: 15rem !important;
     width: 20rem !important;
+  }
+  .todo-img {
+    height: 7.5rem !important;
+    width: 20rem !important;
+  }
+
+  .png-img-container .mb-n2 {
+    margin-bottom: -0.7rem !important;
   }
 }
 @media screen and (max-width: 991px) and (min-width: 768px) {
