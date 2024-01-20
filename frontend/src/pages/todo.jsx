@@ -8,6 +8,7 @@ import { Card } from "../components/Card";
 import React from "react";
 import emptyImg from "../assets/images/DancingDoodle.png";
 import appImg from "../assets/images/MeditatingDoodle.png";
+import { Link } from "react-router-dom";
 export const Todo = () => {
   const todoUrl = "http://localhost:3000/mytodos";
   const addTodoUrl = "http://localhost:3000/newtodo";
@@ -140,7 +141,10 @@ export const Todo = () => {
     <div>
       <div className="container">
         <div className="nav-container mt-3 d-flex align-items-center">
-          <p className="fs-2 fw-bold text-primary">todo</p>
+          <Link style={{ textDecoration: "none" }} to={"/"}>
+            <p className="fs-2 fw-bold text-primary">todo</p>
+          </Link>
+
           <i
             onClick={handleShow}
             className="fa fa-plus text-primary icon ms-auto pt-2"

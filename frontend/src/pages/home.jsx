@@ -1,7 +1,9 @@
 import React from "react";
 import girl from "../assets/images/girl2.png";
 import hometodo from "../assets/images/hometodo.png";
+import { useNavigate } from "react-router-dom";
 export const Home = () => {
+  const navigate = useNavigate();
   return (
     <div>
       <div className="bg-secondary vh-100 scrolldown">
@@ -25,7 +27,12 @@ export const Home = () => {
           </p>
         </div>
         <div className="pt-5">
-          <button className="btn btn-primary px-5 fw-bold">Get Started</button>
+          <button
+            onClick={() => navigate("signup")}
+            className="btn btn-primary px-5 fw-bold"
+          >
+            Get Started
+          </button>
         </div>
         <div className="png-img-container mt-6 mt-md-5">
           <img src={girl} alt="" className="avatar mb-n2 mb-md-n4" />

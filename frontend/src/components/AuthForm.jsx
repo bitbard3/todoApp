@@ -5,6 +5,8 @@ import { userSchema } from "../validators/formValidate";
 import { AuthText } from "../components/AuthText";
 const signupApiUrl = "http://localhost:3000/signup";
 const loginApiUrl = "http://localhost:3000/login";
+import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 export const AuthForm = ({
   formType,
   buttonText,
@@ -18,7 +20,7 @@ export const AuthForm = ({
   const [usernameError, setUsernameError] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [formError, setFormError] = useState("");
-
+  const navigate = useNavigate();
   useEffect(() => {
     setUsernameError("");
     setPasswordError("");
@@ -46,6 +48,7 @@ export const AuthForm = ({
           if (response.status == 200) {
             var jwt = response.data.token;
             localStorage.setItem("jwtToken", jwt);
+            navigate("/todo");
           }
         } catch (error) {
           if (error.response.status == 404) {
@@ -64,12 +67,12 @@ export const AuthForm = ({
               if (login.status == 200) {
                 var jwt = login.data.token;
                 localStorage.setItem("jwtToken", jwt);
+                navigate("/todo");
               }
             } catch (error) {
               setFormError("Error occured try again");
             }
           }
-          console.log(successMessage);
         } catch (error) {
           if (error.response.status === 409) {
             setUsernameError("User already exists");
@@ -88,7 +91,9 @@ export const AuthForm = ({
         <div className="col-md-6 vh-100 hero">
           <div className="container">
             <div className="d-flex justify-content-center justify-content-md-end pt-7 p-md-4">
-              <h1 className="fs-3 fw-bold text-primary brand-text">todo</h1>
+              <Link style={{ textDecoration: "none" }} to={"/"}>
+                <h1 className="fs-3 fw-bold text-primary brand-text">todo</h1>
+              </Link>
             </div>
             <p className="fs-1 text-center  mb-5 mb-md-6 mt-7 account-custom">
               {headingText}
