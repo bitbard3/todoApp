@@ -6,7 +6,7 @@ import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import { Card } from "../components/Card";
 import React from "react";
-// import image from "../assets/images/login.png";
+import emptyImg from "../assets/images/DancingDoodle.png";
 export const Todo = () => {
   const todoUrl = "http://localhost:3000/mytodos";
   const addTodoUrl = "http://localhost:3000/newtodo";
@@ -22,6 +22,7 @@ export const Todo = () => {
   const [newTodoDesc, setNewTodoDesc] = useState("");
   const [defselectedTag, setdefSelectedTag] = useState("work");
   const [selectedTag, setSelectedTag] = useState("");
+  const [showEmpty, setShowEmpty] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   useEffect(() => {
@@ -39,6 +40,13 @@ export const Todo = () => {
       }
     };
     fetchData();
+  }, []);
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      setShowEmpty(true);
+    }, 1000);
+
+    return () => clearTimeout(timeoutId);
   }, []);
   const addTodo = async () => {
     const data = {
@@ -120,13 +128,13 @@ export const Todo = () => {
   const currentTodos = filterTodos.slice(firstTodoIndex, lastTodoIndex);
   const isLastPage =
     lastTodoIndex >= filterTodos.length || filterTodos.length <= 4;
+  const noTodos = filterTodos.length == 0;
   const paginateForward = () => {
     setCurrentPage(currentPage + 1);
   };
   const paginateBack = () => {
     setCurrentPage(currentPage - 1);
   };
-  console.log(currentPage);
   return (
     <div>
       <div className="container">
@@ -240,74 +248,92 @@ export const Todo = () => {
                 </Button>
               </Modal.Footer>
             </Modal>
-            <div className="row pt-3 pt-md-5">
-              <div className="col-md-6 mb-md-0 mb-3">
-                {currentTodos[0] ? (
-                  <Card
-                    title={currentTodos[0].title}
-                    desc={currentTodos[0].description}
-                    tag={currentTodos[0].tag}
-                    id={currentTodos[0]._id}
-                    completed={currentTodos[0].completed}
-                    key={currentTodos[0]._id}
-                    del={deleteTodosState}
-                    update={updateTodoState}
-                  ></Card>
-                ) : (
-                  ""
-                )}
+            {noTodos && showEmpty ? (
+              <div className="d-flex flex-column w-100 align-items-center justify-content-center h-100">
+                <img
+                  src={emptyImg}
+                  className="pt-5 emptyImg"
+                  style={{ width: "30rem" }}
+                  alt=""
+                />
+                <p className="fst-italic fw-bolder pt-5 text-primary">
+                  Your {selectedTag ? selectedTag : `todo`} list is currently on
+                  vacation. Must be nice! Feel free to bring it back to the
+                  hustle whenever you're ready.
+                </p>
               </div>
-              <div className="col-md-6 mb-md-0 mb-3">
-                {currentTodos[1] ? (
-                  <Card
-                    title={currentTodos[1].title}
-                    desc={currentTodos[1].description}
-                    tag={currentTodos[1].tag}
-                    id={currentTodos[1]._id}
-                    completed={currentTodos[1].completed}
-                    key={currentTodos[1]._id}
-                    del={deleteTodosState}
-                    update={updateTodoState}
-                  ></Card>
-                ) : (
-                  ""
-                )}
-              </div>
-            </div>
-            <div className="row pt-md-5">
-              <div className="col-md-6 mb-md-0 mb-3">
-                {currentTodos[2] ? (
-                  <Card
-                    title={currentTodos[2].title}
-                    desc={currentTodos[2].description}
-                    tag={currentTodos[2].tag}
-                    id={currentTodos[2]._id}
-                    completed={currentTodos[2].completed}
-                    key={currentTodos[2]._id}
-                    del={deleteTodosState}
-                    update={updateTodoState}
-                  ></Card>
-                ) : (
-                  ""
-                )}
-              </div>
-              <div className="col-md-6 mb-md-0 mb-3">
-                {currentTodos[3] ? (
-                  <Card
-                    title={currentTodos[3].title}
-                    desc={currentTodos[3].description}
-                    tag={currentTodos[3].tag}
-                    id={currentTodos[3]._id}
-                    completed={currentTodos[3].completed}
-                    key={currentTodos[3]._id}
-                    del={deleteTodosState}
-                    update={updateTodoState}
-                  ></Card>
-                ) : (
-                  ""
-                )}
-              </div>
-            </div>
+            ) : (
+              <>
+                <div className="row pt-3 pt-md-5">
+                  <div className="col-md-6 mb-md-0 mb-3">
+                    {currentTodos[0] ? (
+                      <Card
+                        title={currentTodos[0].title}
+                        desc={currentTodos[0].description}
+                        tag={currentTodos[0].tag}
+                        id={currentTodos[0]._id}
+                        completed={currentTodos[0].completed}
+                        key={currentTodos[0]._id}
+                        del={deleteTodosState}
+                        update={updateTodoState}
+                      ></Card>
+                    ) : (
+                      ""
+                    )}
+                  </div>
+                  <div className="col-md-6 mb-md-0 mb-3">
+                    {currentTodos[1] ? (
+                      <Card
+                        title={currentTodos[1].title}
+                        desc={currentTodos[1].description}
+                        tag={currentTodos[1].tag}
+                        id={currentTodos[1]._id}
+                        completed={currentTodos[1].completed}
+                        key={currentTodos[1]._id}
+                        del={deleteTodosState}
+                        update={updateTodoState}
+                      ></Card>
+                    ) : (
+                      ""
+                    )}
+                  </div>
+                </div>
+                <div className="row pt-md-5">
+                  <div className="col-md-6 mb-md-0 mb-3">
+                    {currentTodos[2] ? (
+                      <Card
+                        title={currentTodos[2].title}
+                        desc={currentTodos[2].description}
+                        tag={currentTodos[2].tag}
+                        id={currentTodos[2]._id}
+                        completed={currentTodos[2].completed}
+                        key={currentTodos[2]._id}
+                        del={deleteTodosState}
+                        update={updateTodoState}
+                      ></Card>
+                    ) : (
+                      ""
+                    )}
+                  </div>
+                  <div className="col-md-6 mb-md-0 mb-3">
+                    {currentTodos[3] ? (
+                      <Card
+                        title={currentTodos[3].title}
+                        desc={currentTodos[3].description}
+                        tag={currentTodos[3].tag}
+                        id={currentTodos[3]._id}
+                        completed={currentTodos[3].completed}
+                        key={currentTodos[3]._id}
+                        del={deleteTodosState}
+                        update={updateTodoState}
+                      ></Card>
+                    ) : (
+                      ""
+                    )}
+                  </div>
+                </div>
+              </>
+            )}
           </div>
           <div className="col-md-1 d-none d-md-block pt-6">
             <div className="row h-100 w-100">
