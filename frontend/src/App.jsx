@@ -5,6 +5,7 @@ import { Signup } from "./pages/signup";
 import { Login } from "./pages/login";
 import { Home } from "./pages/home";
 import { Todo } from "./pages/todo";
+import { NoRoute } from "./pages/404";
 import "../node_modules/font-awesome/css/font-awesome.min.css";
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route element={<Signup />} path="/signup"></Route>
         <Route element={<Login />} path="/login"></Route>
         <Route element={<Todo />} path="/todo"></Route>
+        <Route element={<NoRoute />} path="*"></Route>
       </Routes>
     </div>
   );

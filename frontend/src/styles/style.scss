@@ -149,6 +149,10 @@
   .emptyImg {
     width: 25rem !important;
   }
+  .error-image {
+    height: 15rem !important;
+    width: 20rem !important;
+  }
 }
 .todocard {
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
@@ -182,4 +186,8 @@
 .active:hover {
   box-shadow: rgba(205, 205, 205, 0.4) -4px 3px,
     rgba(200, 200, 200, 0.3) -10px 7px;
+}
+.error-image {
+  height: 20rem;
+  width: 25rem;
 }
