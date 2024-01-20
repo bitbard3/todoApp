@@ -1,4 +1,4 @@
-import "./styles/bootstrap.scss";
+import "./styles/bootstrap.min.css";
 import "./styles/style.css";
 import { Routes, Route } from "react-router-dom";
 import { Signup } from "./pages/signup";
