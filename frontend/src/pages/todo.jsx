@@ -7,6 +7,7 @@ import Modal from "react-bootstrap/Modal";
 import { Card } from "../components/Card";
 import React from "react";
 import emptyImg from "../assets/images/DancingDoodle.png";
+import appImg from "../assets/images/MeditatingDoodle.png";
 export const Todo = () => {
   const todoUrl = "http://localhost:3000/mytodos";
   const addTodoUrl = "http://localhost:3000/newtodo";
@@ -185,6 +186,9 @@ export const Todo = () => {
                   other
                 </p>
               </button>
+              <div className="d-none d-lg-block">
+                <img src={appImg} className="pt-5 w-100" alt="" />
+              </div>
             </div>
           </div>
           <div className="d-flex d-md-none justify-content-start w-100">
