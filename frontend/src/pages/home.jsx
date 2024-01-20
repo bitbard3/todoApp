@@ -65,6 +65,14 @@ export const Home = () => {
           />
         </div>
       </div>
+      <div className="d-none d-md-flex mt-n4 justify-content-center w-100">
+        <span className="text-muted opacity-75">
+          Made with ❤️ by{" "}
+          <a target="_blank" href="https://linktr.ee/ansh3839">
+            ansh
+          </a>
+        </span>
+      </div>
     </div>
   );
 };
