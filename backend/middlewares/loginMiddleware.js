@@ -3,13 +3,14 @@ const { JWT_SECRET } = require('../config')
 
 function loginMiddleware(req, res, next) {
     const token = req.headers.authorization
-    const isValid = jwt.verify(token, JWT_SECRET)
-    if (!isValid) {
+    try {
+        const isValid = jwt.verify(token, JWT_SECRET)
+        req.username = isValid.username
+        next()
+    } catch (error) {
         res.status(403).json("You are not authorized")
         return
     }
-    req.username = isValid.username
-    next()
 }
 
 module.exports = {

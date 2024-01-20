@@ -17,9 +17,10 @@ export const Home = () => {
           },
         });
         navigate("/todo");
-        console.log(response);
+        console.log(response.status);
       } catch (error) {
         console.log(error);
+        navigate("signup");
       }
     } else {
       navigate("signup");

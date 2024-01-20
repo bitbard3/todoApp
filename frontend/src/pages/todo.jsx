@@ -13,12 +13,14 @@ import purple from "../assets/images/purple.png";
 import green from "../assets/images/green.png";
 import red from "../assets/images/red.png";
 import blue from "../assets/images/blue.png";
+import { useNavigate } from "react-router-dom";
 
 export const Todo = () => {
   const todoUrl = "http://localhost:3000/mytodos";
   const addTodoUrl = "http://localhost:3000/newtodo";
   const jwt = localStorage.getItem("jwtToken");
   const todosInPage = 4;
+  const navigate = useNavigate();
   // const maxCharLaptop = 128;
   // const maxCharMobile = 104;
   const [verified, setVerified] = useState(false);
@@ -43,7 +45,7 @@ export const Todo = () => {
         setVerified(true);
         setTodos(response.data.todos.reverse());
       } catch (error) {
-        console.log(error);
+        navigate("/login");
       }
     };
     fetchData();
