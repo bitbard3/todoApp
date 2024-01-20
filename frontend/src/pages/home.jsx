@@ -34,7 +34,7 @@ export const Home = () => {
         </div>
       </div>
       <div className="d-flex flex-column align-items-center justify-content-center vh-100 scrollup">
-        <div className="">
+        <div className="pt-5">
           <span className="fw-bold display-2">
             <span className="purple">t</span>
             <span className="red">o</span>
@@ -64,14 +64,14 @@ export const Home = () => {
             className="todo-img"
           />
         </div>
-      </div>
-      <div className="d-none d-md-flex mt-n4 justify-content-center w-100">
-        <span className="text-muted opacity-75">
-          Made with ❤️ by{" "}
-          <a target="_blank" href="https://linktr.ee/ansh3839">
-            ansh
-          </a>
-        </span>
+        <div className="d-none d-md-block pt-5">
+          <span className="text-muted opacity-75">
+            Made with ❤️ by{" "}
+            <a target="_blank" href="https://linktr.ee/ansh3839">
+              ansh
+            </a>
+          </span>
+        </div>
       </div>
     </div>
   );
