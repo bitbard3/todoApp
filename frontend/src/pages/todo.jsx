@@ -9,6 +9,11 @@ import React from "react";
 import emptyImg from "../assets/images/DancingDoodle.png";
 import appImg from "../assets/images/MeditatingDoodle.png";
 import { Link } from "react-router-dom";
+import purple from "../assets/images/purple.png";
+import green from "../assets/images/green.png";
+import red from "../assets/images/red.png";
+import blue from "../assets/images/blue.png";
+
 export const Todo = () => {
   const todoUrl = "http://localhost:3000/mytodos";
   const addTodoUrl = "http://localhost:3000/newtodo";
@@ -157,7 +162,7 @@ export const Todo = () => {
                 className="btn tag-button d-flex align-items-center gap-md-3 gap-2 mb-2"
                 onClick={(e) => handleTagClick(e)}
               >
-                <div className="tag tag-purple rounded-circle"></div>
+                <img src={purple} className="tag" alt="" />
                 <p value={"work"} className="fs-5 tagname">
                   work
                 </p>
@@ -167,7 +172,7 @@ export const Todo = () => {
                 className="btn tag-button d-flex align-items-center gap-md-3 gap-2 mb-2"
                 onClick={(e) => handleTagClick(e)}
               >
-                <div className="tag tag-red rounded-circle"></div>
+                <img src={red} className="tag" alt="" />
                 <p value={"study"} className="fs-5 tagname">
                   study
                 </p>
@@ -176,7 +181,7 @@ export const Todo = () => {
                 className="btn tag-button d-flex align-items-center gap-md-3 gap-2 mb-2"
                 onClick={(e) => handleTagClick(e)}
               >
-                <div className="tag tag-green rounded-circle"></div>
+                <img src={green} className="tag" alt="" />
                 <p value={"self"} className="fs-5 tagname">
                   self
                 </p>
@@ -185,12 +190,12 @@ export const Todo = () => {
                 className="btn tag-button d-flex align-items-center gap-md-3 gap-2 mb-2"
                 onClick={(e) => handleTagClick(e)}
               >
-                <div className="tag tag-blue rounded-circle"></div>
+                <img src={blue} className="tag" alt="" />
                 <p value={"other"} className="fs-5 tagname">
                   other
                 </p>
               </button>
-              <div className="d-none d-lg-block">
+              <div className="d-none  d-md-block">
                 <img src={appImg} className="pt-5 w-100" alt="" />
               </div>
             </div>
