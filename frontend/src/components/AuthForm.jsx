@@ -52,7 +52,7 @@ export const AuthForm = ({
           }
         } catch (error) {
           if (error.response.status == 404) {
-            setUsernameError("User not found");
+            setUsernameError("User not found / Incorrect password");
           } else {
             setFormError("Failed to login, retry");
           }
