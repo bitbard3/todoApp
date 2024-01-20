@@ -51,7 +51,7 @@ export const Todo = () => {
   useEffect(() => {
     const timeoutId = setTimeout(() => {
       setShowEmpty(true);
-    }, 1000);
+    }, 300);
 
     return () => clearTimeout(timeoutId);
   }, []);
@@ -152,7 +152,7 @@ export const Todo = () => {
 
           <i
             onClick={handleShow}
-            className="fa fa-plus text-primary icon ms-auto pt-2"
+            className="fa fa-plus text-primary icon ms-auto pt-2 z-1"
           ></i>
         </div>
         <div className="row pt-5 pt-md-0">
@@ -350,7 +350,7 @@ export const Todo = () => {
               )}
             </div>
           </div>
-          <div className="col-md-1 d-none d-md-block pt-md-6 pt-lg-0 mt-lg-n5">
+          <div className="col-md-1 d-none d-md-block pt-md-6 pt-lg-0 mt-md-n5">
             <div className="row h-100 w-100">
               <div className="col-12">
                 <div className="d-flex flex-column justify-content-around h-100 align-items-end">
