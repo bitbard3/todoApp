@@ -277,6 +277,9 @@ export const Todo = () => {
                     on vacation. Must be nice! Feel free to bring it back to the
                     hustle whenever you're ready.
                   </p>
+                  <button onClick={handleShow} className="btn btn-primary mt-4">
+                    Add todo
+                  </button>
                 </div>
               ) : (
                 <>
