@@ -22,6 +22,19 @@
 .light {
   color: var(--light);
 }
+.tag-green {
+  background-color: var(--green) !important;
+}
+.tag-purple {
+  background-color: var(--purple) !important;
+}
+.tag-red {
+  background-color: var(--red) !important;
+}
+.tag-blue {
+  background-color: var(--blue) !important;
+}
+
 @keyframes moveDownAnimation {
   from {
     transform: translateY(0);
