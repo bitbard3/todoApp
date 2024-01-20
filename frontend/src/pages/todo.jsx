@@ -195,7 +195,7 @@ export const Todo = () => {
                   other
                 </p>
               </button>
-              <div className="d-none  d-md-block">
+              <div className="d-none  d-lg-block">
                 <img src={appImg} className="pt-5 w-100" alt="" />
               </div>
             </div>
