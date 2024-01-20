@@ -263,14 +263,14 @@ export const Todo = () => {
             </Modal>
             <div className="">
               {noTodos && showEmpty ? (
-                <div className="d-flex flex-column w-100 align-items-center justify-content-center h-100">
+                <div className="d-flex flex-column w-100 align-items-center justify-content-center h-100 ps-5">
                   <img
                     src={emptyImg}
                     className="pt-5 emptyImg"
                     style={{ width: "30rem" }}
                     alt=""
                   />
-                  <p className="fst-italic fw-bolder pt-5 text-primary">
+                  <p className="fst-italic fw-bolder pt-5 text-primary text-center">
                     Your {selectedTag ? selectedTag : `todo`} list is currently
                     on vacation. Must be nice! Feel free to bring it back to the
                     hustle whenever you're ready.
