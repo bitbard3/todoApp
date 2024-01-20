@@ -2,8 +2,29 @@ import React from "react";
 import girl from "../assets/images/girl2.png";
 import hometodo from "../assets/images/hometodo.png";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
+
 export const Home = () => {
+  const jwt = localStorage.getItem("jwtToken");
+  const todoUrl = "http://localhost:3000/mytodos";
   const navigate = useNavigate();
+  const verifyJwt = async () => {
+    if (jwt) {
+      try {
+        const response = await axios.get(todoUrl, {
+          headers: {
+            Authorization: jwt,
+          },
+        });
+        navigate("/todo");
+        console.log(response);
+      } catch (error) {
+        console.log(error);
+      }
+    } else {
+      navigate("signup");
+    }
+  };
   return (
     <div>
       <div className="bg-secondary vh-100 scrolldown">
@@ -14,10 +35,10 @@ export const Home = () => {
       <div className="d-flex flex-column align-items-center justify-content-center vh-100 scrollup">
         <div className="">
           <span className="fw-bold display-2">
-            <letter className="purple">t</letter>
-            <letter className="red">o</letter>
-            <letter className="green">d</letter>
-            <letter className="blue">o</letter>
+            <span className="purple">t</span>
+            <span className="red">o</span>
+            <span className="green">d</span>
+            <span className="blue">o</span>
           </span>
         </div>
         <div className="hero-text-container">
@@ -27,10 +48,7 @@ export const Home = () => {
           </p>
         </div>
         <div className="pt-5">
-          <button
-            onClick={() => navigate("signup")}
-            className="btn btn-primary px-5 fw-bold"
-          >
+          <button onClick={verifyJwt} className="btn btn-primary px-5 fw-bold">
             Get Started
           </button>
         </div>
