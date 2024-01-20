@@ -7,32 +7,25 @@
   --red: #ffcece;
   --purple: #d2ceff;
 }
+
 .purple {
   color: #c0bbfd;
 }
+
 .blue {
   color: #c0dbf3;
 }
+
 .green {
   color: #c8f0c1;
 }
+
 .red {
   color: #fabebe;
 }
+
 .light {
   color: var(--light);
-}
-.tag-green {
-  background-color: var(--green) !important;
-}
-.tag-purple {
-  background-color: var(--purple) !important;
-}
-.tag-red {
-  background-color: var(--red) !important;
-}
-.tag-blue {
-  background-color: var(--blue) !important;
 }
 
 @keyframes moveDownAnimation {
@@ -63,6 +56,7 @@
 .strike {
   position: relative;
 }
+
 .strike::after {
   content: " ";
   position: absolute;
@@ -77,41 +71,121 @@
   animation-iteration-count: 1;
   animation-fill-mode: forwards;
 }
+
 .scrolldown {
   animation: moveDownAnimation 1s cubic-bezier(0, 0, 0.93, 0.38) forwards;
   animation-delay: 1.7s;
 }
+
 .scrollup {
   animation: moveUpAnimation 1.3s cubic-bezier(0, 0, 1, -0.02) forwards;
   animation-delay: 1.6s;
-}
-.account-custom {
-  color: #3b3a3a;
-}
-.info {
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 12px;
-  border: 0.5px solid var(--primary);
-}
-.error {
-  font-size: 0.9rem;
-  letter-spacing: 1px;
 }
 
 .avatar {
   height: 10rem;
   width: 10rem;
 }
+
+.todo-img {
+  height: 7.5rem !important;
+  width: 20rem !important;
+}
+
+.png-img-container .mb-n2 {
+  margin-bottom: -0.7rem !important;
+}
+
+.tag-green {
+  background-color: var(--green) !important;
+}
+
+.tag-purple {
+  background-color: var(--purple) !important;
+}
+
+.tag-red {
+  background-color: var(--red) !important;
+}
+
+.tag-blue {
+  background-color: var(--blue) !important;
+}
+
+.todocard {
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.todocard .btn {
+  border: 0 !important;
+}
+
+.dropdown-toggle::after,
+.dropdown-toggle::before {
+  display: none !important;
+}
+
+.dropdown-menu {
+  --bs-dropdown-link-active-bg: rgba(0, 0, 0, 0.106);
+}
+
+.checkedtodo {
+  text-decoration: line-through;
+  text-decoration-thickness: 1px;
+  text-decoration-color: inherit;
+}
+
+.tag-button {
+  --bs-btn-bg: #f5f5f5;
+  --bs-btn-hover-border-color: #b2aeae;
+}
+
+.tag-button:hover {
+  box-shadow: rgba(36, 36, 36, 0.2) -5px 16px 10px -10px;
+}
+
+.active {
+  box-shadow: rgba(205, 205, 205, 0.4) -5px 5px,
+    rgba(200, 200, 200, 0.3) -10px 10px;
+}
+
+.active:hover {
+  box-shadow: rgba(205, 205, 205, 0.4) -4px 3px,
+    rgba(200, 200, 200, 0.3) -10px 7px;
+}
+
 .icon {
   font-size: 1.5rem !important;
   cursor: pointer;
 }
+
 .tag {
   height: 35px;
   width: 35px;
 }
+
 .tag-sm {
   height: 20px;
   width: 20px;
+}
+
+.account-custom {
+  color: #3b3a3a;
+}
+
+.info {
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 12px;
+  border: 0.5px solid var(--primary);
+}
+
+.error {
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+}
+
+.error-image {
+  height: 20rem;
+  width: 25rem;
 }
 
 @media screen and (max-width: 767px) {
@@ -141,13 +215,6 @@
     height: 25px !important;
     width: 25px !important;
   }
-  .todo-img {
-    height: 7.5rem !important;
-    width: 20rem !important;
-  }
-  .png-img-container .mb-n2 {
-    margin-bottom: -0.7rem !important;
-  }
   .emptyImg {
     width: 25rem !important;
   }
@@ -167,41 +234,4 @@
     height: 30px;
     width: 30px;
   }
-}
-.todocard {
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-}
-.todocard .btn {
-  border: 0 !important;
-}
-.dropdown-toggle::after,
-.dropdown-toggle::before {
-  display: none !important;
-}
-.dropdown-menu {
-  --bs-dropdown-link-active-bg: rgba(0, 0, 0, 0.106);
-}
-.checkedtodo {
-  text-decoration: line-through;
-  text-decoration-thickness: 1px;
-  text-decoration-color: inherit;
-}
-.tag-button {
-  --bs-btn-bg: #f5f5f5;
-  --bs-btn-hover-border-color: #b2aeae;
-}
-.tag-button:hover {
-  box-shadow: rgba(36, 36, 36, 0.2) -5px 16px 10px -10px;
-}
-.active {
-  box-shadow: rgba(205, 205, 205, 0.4) -5px 5px,
-    rgba(200, 200, 200, 0.3) -10px 10px;
-}
-.active:hover {
-  box-shadow: rgba(205, 205, 205, 0.4) -4px 3px,
-    rgba(200, 200, 200, 0.3) -10px 7px;
-}
-.error-image {
-  height: 20rem;
-  width: 25rem;
 }

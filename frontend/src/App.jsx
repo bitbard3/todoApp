@@ -1,5 +1,5 @@
 import "./styles/bootstrap.scss";
-import "./styles/style.scss";
+import "./styles/style.css";
 import { Routes, Route } from "react-router-dom";
 import { Signup } from "./pages/signup";
 import { Login } from "./pages/login";
