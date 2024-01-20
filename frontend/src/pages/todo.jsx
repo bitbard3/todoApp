@@ -195,7 +195,7 @@ export const Todo = () => {
               </div>
             </div>
           </div>
-          <div className="d-flex d-md-none justify-content-start w-100">
+          <div className="d-flex py-2 d-md-none justify-content-start w-100">
             <i
               onClick={paginateBack}
               className={`fa fa-arrow-left icon text-primary ${
@@ -256,94 +256,96 @@ export const Todo = () => {
                 </Button>
               </Modal.Footer>
             </Modal>
-            {noTodos && showEmpty ? (
-              <div className="d-flex flex-column w-100 align-items-center justify-content-center h-100">
-                <img
-                  src={emptyImg}
-                  className="pt-5 emptyImg"
-                  style={{ width: "30rem" }}
-                  alt=""
-                />
-                <p className="fst-italic fw-bolder pt-5 text-primary">
-                  Your {selectedTag ? selectedTag : `todo`} list is currently on
-                  vacation. Must be nice! Feel free to bring it back to the
-                  hustle whenever you're ready.
-                </p>
-              </div>
-            ) : (
-              <>
-                <div className="row pt-3 pt-md-5">
-                  <div className="col-md-6 mb-md-0 mb-3">
-                    {currentTodos[0] ? (
-                      <Card
-                        title={currentTodos[0].title}
-                        desc={currentTodos[0].description}
-                        tag={currentTodos[0].tag}
-                        id={currentTodos[0]._id}
-                        completed={currentTodos[0].completed}
-                        key={currentTodos[0]._id}
-                        del={deleteTodosState}
-                        update={updateTodoState}
-                      ></Card>
-                    ) : (
-                      ""
-                    )}
-                  </div>
-                  <div className="col-md-6 mb-md-0 mb-3">
-                    {currentTodos[1] ? (
-                      <Card
-                        title={currentTodos[1].title}
-                        desc={currentTodos[1].description}
-                        tag={currentTodos[1].tag}
-                        id={currentTodos[1]._id}
-                        completed={currentTodos[1].completed}
-                        key={currentTodos[1]._id}
-                        del={deleteTodosState}
-                        update={updateTodoState}
-                      ></Card>
-                    ) : (
-                      ""
-                    )}
-                  </div>
+            <div className="">
+              {noTodos && showEmpty ? (
+                <div className="d-flex flex-column w-100 align-items-center justify-content-center h-100">
+                  <img
+                    src={emptyImg}
+                    className="pt-5 emptyImg"
+                    style={{ width: "30rem" }}
+                    alt=""
+                  />
+                  <p className="fst-italic fw-bolder pt-5 text-primary">
+                    Your {selectedTag ? selectedTag : `todo`} list is currently
+                    on vacation. Must be nice! Feel free to bring it back to the
+                    hustle whenever you're ready.
+                  </p>
                 </div>
-                <div className="row pt-md-5">
-                  <div className="col-md-6 mb-md-0 mb-3">
-                    {currentTodos[2] ? (
-                      <Card
-                        title={currentTodos[2].title}
-                        desc={currentTodos[2].description}
-                        tag={currentTodos[2].tag}
-                        id={currentTodos[2]._id}
-                        completed={currentTodos[2].completed}
-                        key={currentTodos[2]._id}
-                        del={deleteTodosState}
-                        update={updateTodoState}
-                      ></Card>
-                    ) : (
-                      ""
-                    )}
+              ) : (
+                <>
+                  <div className="row pt-3 pt-md-5">
+                    <div className="col-md-6 mb-md-0 mb-3">
+                      {currentTodos[0] ? (
+                        <Card
+                          title={currentTodos[0].title}
+                          desc={currentTodos[0].description}
+                          tag={currentTodos[0].tag}
+                          id={currentTodos[0]._id}
+                          completed={currentTodos[0].completed}
+                          key={currentTodos[0]._id}
+                          del={deleteTodosState}
+                          update={updateTodoState}
+                        ></Card>
+                      ) : (
+                        ""
+                      )}
+                    </div>
+                    <div className="col-md-6 mb-md-0 mb-3">
+                      {currentTodos[1] ? (
+                        <Card
+                          title={currentTodos[1].title}
+                          desc={currentTodos[1].description}
+                          tag={currentTodos[1].tag}
+                          id={currentTodos[1]._id}
+                          completed={currentTodos[1].completed}
+                          key={currentTodos[1]._id}
+                          del={deleteTodosState}
+                          update={updateTodoState}
+                        ></Card>
+                      ) : (
+                        ""
+                      )}
+                    </div>
                   </div>
-                  <div className="col-md-6 mb-md-0 mb-3">
-                    {currentTodos[3] ? (
-                      <Card
-                        title={currentTodos[3].title}
-                        desc={currentTodos[3].description}
-                        tag={currentTodos[3].tag}
-                        id={currentTodos[3]._id}
-                        completed={currentTodos[3].completed}
-                        key={currentTodos[3]._id}
-                        del={deleteTodosState}
-                        update={updateTodoState}
-                      ></Card>
-                    ) : (
-                      ""
-                    )}
+                  <div className="row pt-md-5">
+                    <div className="col-md-6 mb-md-0 mb-3">
+                      {currentTodos[2] ? (
+                        <Card
+                          title={currentTodos[2].title}
+                          desc={currentTodos[2].description}
+                          tag={currentTodos[2].tag}
+                          id={currentTodos[2]._id}
+                          completed={currentTodos[2].completed}
+                          key={currentTodos[2]._id}
+                          del={deleteTodosState}
+                          update={updateTodoState}
+                        ></Card>
+                      ) : (
+                        ""
+                      )}
+                    </div>
+                    <div className="col-md-6 mb-md-0 mb-3">
+                      {currentTodos[3] ? (
+                        <Card
+                          title={currentTodos[3].title}
+                          desc={currentTodos[3].description}
+                          tag={currentTodos[3].tag}
+                          id={currentTodos[3]._id}
+                          completed={currentTodos[3].completed}
+                          key={currentTodos[3]._id}
+                          del={deleteTodosState}
+                          update={updateTodoState}
+                        ></Card>
+                      ) : (
+                        ""
+                      )}
+                    </div>
                   </div>
-                </div>
-              </>
-            )}
+                </>
+              )}
+            </div>
           </div>
-          <div className="col-md-1 d-none d-md-block pt-6">
+          <div className="col-md-1 d-none d-md-block pt-md-6 pt-lg-0 mt-lg-n5">
             <div className="row h-100 w-100">
               <div className="col-12">
                 <div className="d-flex flex-column justify-content-around h-100 align-items-end">
