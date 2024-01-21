@@ -12,8 +12,8 @@ export const Card = ({ title, desc, tag, id, completed, del, update }) => {
   const [updateTodoDesc, setUpdateTodoDesc] = useState(desc);
   const [updateSelectedTag, setUpdateSelectedTag] = useState(tag);
   const jwt = localStorage.getItem("jwtToken");
-  const updateUrl = "http://localhost:3000/updatetodo/";
-  const deleteUrl = "http://localhost:3000/deletetodo/";
+  const updateUrl = "https://todo-app-brown-ten.vercel.app/updatetodo/";
+  const deleteUrl = "https://todo-app-brown-ten.vercel.app/deletetodo/";
   const todocheck = () => {
     setTodoDone(!tododone);
   };

@@ -3,8 +3,8 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { userSchema } from "../validators/formValidate";
 import { AuthText } from "../components/AuthText";
-const signupApiUrl = "http://localhost:3000/signup";
-const loginApiUrl = "http://localhost:3000/login";
+const signupApiUrl = "https://todo-app-brown-ten.vercel.app/signup";
+const loginApiUrl = "https://todo-app-brown-ten.vercel.app/login";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 export const AuthForm = ({

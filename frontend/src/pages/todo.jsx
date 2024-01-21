@@ -16,8 +16,8 @@ import blue from "../assets/images/blue.png";
 import { useNavigate } from "react-router-dom";
 
 export const Todo = () => {
-  const todoUrl = "http://localhost:3000/mytodos";
-  const addTodoUrl = "http://localhost:3000/newtodo";
+  const todoUrl = "https://todo-app-brown-ten.vercel.app/mytodos";
+  const addTodoUrl = "https://todo-app-brown-ten.vercel.app/newtodo";
   const jwt = localStorage.getItem("jwtToken");
   const todosInPage = 4;
   const navigate = useNavigate();
@@ -53,7 +53,7 @@ export const Todo = () => {
   useEffect(() => {
     const timeoutId = setTimeout(() => {
       setShowEmpty(true);
-    }, 300);
+    }, 2000);
 
     return () => clearTimeout(timeoutId);
   }, []);

@@ -6,7 +6,7 @@ import axios from "axios";
 
 export const Home = () => {
   const jwt = localStorage.getItem("jwtToken");
-  const todoUrl = "http://localhost:3000/mytodos";
+  const todoUrl = "https://todo-app-brown-ten.vercel.app/mytodos";
   const navigate = useNavigate();
   const verifyJwt = async () => {
     if (jwt) {
