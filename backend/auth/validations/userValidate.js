@@ -1,4 +1,4 @@
-const { z } = require("zod")
+import z from "zod"
 
 const usernameSchema = z.string().min(3).max(20)
 const passwordSchema = z.string().min(6)
@@ -8,6 +8,6 @@ const formSchema = z.object({
     password: passwordSchema
 })
 
-module.exports = {
+export default {
     formSchema
 }
