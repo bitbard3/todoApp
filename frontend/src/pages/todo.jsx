@@ -14,6 +14,7 @@ import green from "../assets/images/green.png";
 import red from "../assets/images/red.png";
 import blue from "../assets/images/blue.png";
 import { useNavigate } from "react-router-dom";
+import SyncLoader from "react-spinners/SyncLoader";
 
 export const Todo = () => {
   const todoUrl = "https://todo-app-brown-ten.vercel.app/mytodos";
@@ -21,8 +22,6 @@ export const Todo = () => {
   const jwt = localStorage.getItem("jwtToken");
   const todosInPage = 4;
   const navigate = useNavigate();
-  // const maxCharLaptop = 128;
-  // const maxCharMobile = 104;
   const [verified, setVerified] = useState(false);
   const [todos, setTodos] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -32,10 +31,12 @@ export const Todo = () => {
   const [defselectedTag, setdefSelectedTag] = useState("work");
   const [selectedTag, setSelectedTag] = useState("");
   const [showEmpty, setShowEmpty] = useState(false);
+  const [spinner, setSpinner] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   useEffect(() => {
     const fetchData = async () => {
+      setSpinner(true);
       try {
         const response = await axios.get(todoUrl, {
           headers: {
@@ -44,8 +45,10 @@ export const Todo = () => {
         });
         setVerified(true);
         setTodos(response.data.todos.reverse());
+        setSpinner(false);
       } catch (error) {
         navigate("/login");
+        setSpinner(false);
       }
     };
     fetchData();
@@ -53,7 +56,7 @@ export const Todo = () => {
   useEffect(() => {
     const timeoutId = setTimeout(() => {
       setShowEmpty(true);
-    }, 2000);
+    }, 1);
 
     return () => clearTimeout(timeoutId);
   }, []);
@@ -263,97 +266,106 @@ export const Todo = () => {
                 </Button>
               </Modal.Footer>
             </Modal>
-            <div className="">
-              {noTodos && showEmpty ? (
-                <div className="d-flex flex-column w-100 align-items-center justify-content-center h-100 ps-5">
-                  <img
-                    src={emptyImg}
-                    className="pt-5 emptyImg"
-                    style={{ width: "30rem" }}
-                    alt=""
-                  />
-                  <p className="fst-italic fw-bolder pt-5 text-primary text-center">
-                    Your {selectedTag ? selectedTag : `todo`} list is currently
-                    on vacation. Must be nice! Feel free to bring it back to the
-                    hustle whenever you're ready.
-                  </p>
-                  <button onClick={handleShow} className="btn btn-primary mt-4">
-                    Add todo
-                  </button>
-                </div>
-              ) : (
-                <>
-                  <div className="row pt-3 pt-md-5">
-                    <div className="col-md-6 mb-md-0 mb-3">
-                      {currentTodos[0] ? (
-                        <Card
-                          title={currentTodos[0].title}
-                          desc={currentTodos[0].description}
-                          tag={currentTodos[0].tag}
-                          id={currentTodos[0]._id}
-                          completed={currentTodos[0].completed}
-                          key={currentTodos[0]._id}
-                          del={deleteTodosState}
-                          update={updateTodoState}
-                        ></Card>
-                      ) : (
-                        ""
-                      )}
-                    </div>
-                    <div className="col-md-6 mb-md-0 mb-3">
-                      {currentTodos[1] ? (
-                        <Card
-                          title={currentTodos[1].title}
-                          desc={currentTodos[1].description}
-                          tag={currentTodos[1].tag}
-                          id={currentTodos[1]._id}
-                          completed={currentTodos[1].completed}
-                          key={currentTodos[1]._id}
-                          del={deleteTodosState}
-                          update={updateTodoState}
-                        ></Card>
-                      ) : (
-                        ""
-                      )}
-                    </div>
+            {spinner ? (
+              <div className="h-100 w-100 d-flex justify-content-center align-items-center spinner">
+                <SyncLoader color="#69665c" margin={4} speedMultiplier={0.5} />
+              </div>
+            ) : (
+              <div className="">
+                {noTodos && showEmpty ? (
+                  <div className="d-flex flex-column w-100 align-items-center justify-content-center h-100 ps-5">
+                    <img
+                      src={emptyImg}
+                      className="pt-5 emptyImg"
+                      style={{ width: "30rem" }}
+                      alt=""
+                    />
+                    <p className="fst-italic fw-bolder pt-5 text-primary text-center">
+                      Your {selectedTag ? selectedTag : `todo`} list is
+                      currently on vacation. Must be nice! Feel free to bring it
+                      back to the hustle whenever you're ready.
+                    </p>
+                    <button
+                      onClick={handleShow}
+                      className="btn btn-primary mt-4"
+                    >
+                      Add todo
+                    </button>
                   </div>
-                  <div className="row pt-md-5">
-                    <div className="col-md-6 mb-md-0 mb-3">
-                      {currentTodos[2] ? (
-                        <Card
-                          title={currentTodos[2].title}
-                          desc={currentTodos[2].description}
-                          tag={currentTodos[2].tag}
-                          id={currentTodos[2]._id}
-                          completed={currentTodos[2].completed}
-                          key={currentTodos[2]._id}
-                          del={deleteTodosState}
-                          update={updateTodoState}
-                        ></Card>
-                      ) : (
-                        ""
-                      )}
+                ) : (
+                  <>
+                    <div className="row pt-3 pt-md-5">
+                      <div className="col-md-6 mb-md-0 mb-3">
+                        {currentTodos[0] ? (
+                          <Card
+                            title={currentTodos[0].title}
+                            desc={currentTodos[0].description}
+                            tag={currentTodos[0].tag}
+                            id={currentTodos[0]._id}
+                            completed={currentTodos[0].completed}
+                            key={currentTodos[0]._id}
+                            del={deleteTodosState}
+                            update={updateTodoState}
+                          ></Card>
+                        ) : (
+                          ""
+                        )}
+                      </div>
+                      <div className="col-md-6 mb-md-0 mb-3">
+                        {currentTodos[1] ? (
+                          <Card
+                            title={currentTodos[1].title}
+                            desc={currentTodos[1].description}
+                            tag={currentTodos[1].tag}
+                            id={currentTodos[1]._id}
+                            completed={currentTodos[1].completed}
+                            key={currentTodos[1]._id}
+                            del={deleteTodosState}
+                            update={updateTodoState}
+                          ></Card>
+                        ) : (
+                          ""
+                        )}
+                      </div>
                     </div>
-                    <div className="col-md-6 mb-md-0 mb-3">
-                      {currentTodos[3] ? (
-                        <Card
-                          title={currentTodos[3].title}
-                          desc={currentTodos[3].description}
-                          tag={currentTodos[3].tag}
-                          id={currentTodos[3]._id}
-                          completed={currentTodos[3].completed}
-                          key={currentTodos[3]._id}
-                          del={deleteTodosState}
-                          update={updateTodoState}
-                        ></Card>
-                      ) : (
-                        ""
-                      )}
+                    <div className="row pt-md-5">
+                      <div className="col-md-6 mb-md-0 mb-3">
+                        {currentTodos[2] ? (
+                          <Card
+                            title={currentTodos[2].title}
+                            desc={currentTodos[2].description}
+                            tag={currentTodos[2].tag}
+                            id={currentTodos[2]._id}
+                            completed={currentTodos[2].completed}
+                            key={currentTodos[2]._id}
+                            del={deleteTodosState}
+                            update={updateTodoState}
+                          ></Card>
+                        ) : (
+                          ""
+                        )}
+                      </div>
+                      <div className="col-md-6 mb-md-0 mb-3">
+                        {currentTodos[3] ? (
+                          <Card
+                            title={currentTodos[3].title}
+                            desc={currentTodos[3].description}
+                            tag={currentTodos[3].tag}
+                            id={currentTodos[3]._id}
+                            completed={currentTodos[3].completed}
+                            key={currentTodos[3]._id}
+                            del={deleteTodosState}
+                            update={updateTodoState}
+                          ></Card>
+                        ) : (
+                          ""
+                        )}
+                      </div>
                     </div>
-                  </div>
-                </>
-              )}
-            </div>
+                  </>
+                )}
+              </div>
+            )}
           </div>
           <div className="col-md-1 d-none d-md-block pt-md-6 pt-lg-0 mt-md-n5">
             <div className="row h-100 w-100">

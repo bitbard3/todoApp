@@ -220,6 +220,9 @@
     height: 7.5rem !important;
     width: 20rem !important;
   }
+  .spinner {
+    height: 70vh !important;
+  }
 
   .png-img-container .mb-n2 {
     margin-bottom: -0.7rem !important;
