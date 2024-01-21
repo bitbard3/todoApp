@@ -4,7 +4,7 @@ const { authRoutes } = require('./auth/routes')
 const { todoRoutes } = require('./app/routes')
 const cors = require('cors')
 
-app.use(cors())
+app.use(cors({ origin: process.env.CLIENT_URL }))
 app.use(express.json())
 
 app.use(authRoutes)
