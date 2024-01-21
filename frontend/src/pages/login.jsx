@@ -1,4 +1,4 @@
-import loginImage from "../assets/images/person1.png";
+import loginImage from "../assets/images/Person1.png";
 import { AuthForm } from "../components/AuthForm";
 export const Login = () => {
   return (
