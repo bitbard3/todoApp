@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import girl from "../assets/images/girl2.png";
 import hometodo from "../assets/images/hometodo.png";
 import { useNavigate } from "react-router-dom";
@@ -9,6 +9,7 @@ export const Home = () => {
   const todoUrl = "https://todo-app-brown-ten.vercel.app/mytodos";
   const navigate = useNavigate();
   const [spinner, setSpinner] = useState(false);
+  const [displayAnimation, setDisplayAnimation] = useState(true);
   const verifyJwt = async () => {
     setSpinner(true);
     if (jwt) {
@@ -27,6 +28,21 @@ export const Home = () => {
       navigate("signup");
     }
   };
+  useEffect(() => {
+    const animation1 = document.querySelector(".animation1");
+    const animation2 = document.querySelector(".animation2");
+
+    if (animation1 && animation2) {
+      const timeoutId = setTimeout(() => {
+        animation2.scrollIntoView({ behavior: "smooth" });
+        setTimeout(() => {
+          setDisplayAnimation(false);
+        }, 2100);
+      }, 2000);
+
+      return () => clearTimeout(timeoutId);
+    }
+  }, []);
   return (
     <div>
       {spinner ? (
@@ -35,12 +51,16 @@ export const Home = () => {
         </div>
       ) : (
         <>
-          <div className="bg-secondary vh-100 scrolldown">
+          <div
+            className={` bg-secondary vh-100 animation1 ${
+              displayAnimation ? `` : "d-none"
+            } `}
+          >
             <div className="d-flex justify-content-center align-items-center h-100">
               <p className="strike display-2 fw-bold text-primary">todo</p>
             </div>
           </div>
-          <div className="d-flex flex-column align-items-center justify-content-center vh-100 scrollup">
+          <div className="d-flex flex-column align-items-center justify-content-center vh-100 animation2">
             <div className="pt-5">
               <span className="fw-bold display-2">
                 <span className="purple">t</span>
