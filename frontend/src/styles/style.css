@@ -181,8 +181,59 @@
 .loader-bg {
   background-color: var(--secondary);
 }
+@media screen and (max-width: 450px) and (min-width: 0px) {
+  .hero {
+    background-color: var(--secondary);
+  }
+  .brand-text {
+    font-size: 3rem !important;
+  }
+  .account-custom {
+    font-size: 1.3rem !important;
+  }
+  .avatar {
+    width: 5rem !important;
+    height: 5rem !important;
+  }
+  .hero-text {
+    font-size: 1rem !important;
+  }
+  .hero-text-container {
+    padding: 0 3rem;
+  }
+  .tagname {
+    font-size: 0.8rem !important;
+  }
+  .tag {
+    height: 20px !important;
+    width: 20px !important;
+  }
+  .emptyImg {
+    width: 22rem !important;
+  }
+  .error-image {
+    height: 15rem !important;
+    width: 20rem !important;
+  }
+  .todo-img {
+    height: 7.5rem !important;
+    width: 18rem !important;
+  }
+  .spinner {
+    height: 70vh !important;
+  }
+  .emptyDiv {
+    padding-left: 0 !important;
+  }
 
-@media screen and (max-width: 767px) {
+  .png-img-container .mb-n2 {
+    margin-bottom: -0.7rem !important;
+  }
+}
+@media screen and (max-width: 767px) and (min-width: 451px) {
+  .emptyDiv {
+    padding-left: 0 !important;
+  }
   .hero {
     background-color: var(--secondary);
   }

@@ -273,7 +273,7 @@ export const Todo = () => {
             ) : (
               <div className="">
                 {noTodos && showEmpty ? (
-                  <div className="d-flex flex-column w-100 align-items-center justify-content-center h-100 ps-5">
+                  <div className="d-flex flex-column w-100 emptyDiv align-items-center justify-content-center h-100 ps-5">
                     <img
                       src={emptyImg}
                       className="pt-5 emptyImg"
