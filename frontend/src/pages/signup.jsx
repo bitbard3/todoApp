@@ -1,5 +1,5 @@
 import React from "react";
-import signupImage from "../assets/images/person1.png";
+import signupImage from "../assets/images/Person1.png";
 import { AuthForm } from "../components/AuthForm";
 export const Signup = () => {
   return (
