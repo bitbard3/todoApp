@@ -1,4 +1,4 @@
-import z from "zod";
+const z = require("zod")
 const usernameSchema = z.string({
     required_error: "Username is required",
 }).refine(value => value.length >= 3 && value.length <= 20, {
