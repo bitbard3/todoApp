@@ -178,6 +178,9 @@
   height: 20rem;
   width: 25rem;
 }
+.loader-bg {
+  background-color: var(--secondary);
+}
 
 @media screen and (max-width: 767px) {
   .hero {
