@@ -1,18 +1,32 @@
 
 
-## [Pastel aesthetic todo app](https://todo-rho-self.vercel.app/)
-<img width="1440" alt="Screenshot 2024-01-21 at 6 46 19 PM" src="https://github.com/bitbard3/todoApp/assets/140071186/83002236-b265-4550-a256-1f9103d87c53">
-
-
-
+## [Qr-Pay](https://qr-pay-six.vercel.app/)
+![Frame 5](https://github.com/bitbard3/todoApp/assets/140071186/2b4962a8-b89c-46fe-bae3-4b4ac8c3a8e4)
 
 ## Features
+- Send and receive money
+- Transaction History
+- Add friends, frined frequets
+- Qr code for accessibility to send payments 
 
-- User Authentication and Authorization
+## Functionality
+
+- Database Transactions
+- User Authentication and Authorization using JWT
 - CRUD operations
-- Pagination/Loaders
+- Skeleton Loaders/Empty state handling
 - Responsive
 
+## Tech Stack
+- Frontend: React Recoil Tailwind Shadcn
+- Backend: MongoDB, Express
+
+## Things i learnt
+
+- Database transaction and sessions in MongoDB
+- Aggregation pipelines in Mongodb
+- Aysnc backend calls in recoil
+- Dynamic routing
 
 ## Environment Variables
 
